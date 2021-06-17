@@ -113,7 +113,8 @@ impl UserAuthInfo {
 impl fmt::Display for UserAuthInfo {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match &self.token {
-            Some(token) => write!(f,
+            Some(token) => write!(
+                f,
                 "MediaBrowser \
                 Client=\"{}\", \
                 Device=\"{}\", \
@@ -123,7 +124,8 @@ impl fmt::Display for UserAuthInfo {
                 self.client, self.device, self.device_id, self.version, token
             ),
 
-            None => write!(f,
+            None => write!(
+                f,
                 "MediaBrowser \
                 Client=\"{}\", \
                 Device=\"{}\", \

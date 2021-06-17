@@ -2,7 +2,7 @@
 use http::header;
 
 use crate::auth::AuthHeader;
-use crate::http::{HttpClient};
+use crate::http::HttpClient;
 use crate::model::ActivityLogEntry;
 
 use super::{ClientResult, ItemResponse, Jellyfin};
