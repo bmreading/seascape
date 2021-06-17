@@ -1,6 +1,6 @@
 use thiserror::Error;
 #[derive(Error, Debug)]
-pub enum JellyfinError {
+pub enum SeascapeError {
     #[error("{0}")]
     Reqwest(#[from] reqwest::Error),
 

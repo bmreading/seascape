@@ -5,7 +5,7 @@ use http::header::{HeaderName, HeaderValue};
 use std::collections::HashMap;
 use std::{convert::TryFrom, str::FromStr};
 
-use crate::error::{self, JellyfinError};
+use crate::error::{self, SeascapeError};
 
 /// The HTTP header name of a Jellyfin user-based authentication
 pub const USER_AUTH_HEADER_KEY: &str = "X-Emby-Authorization";
@@ -137,9 +137,9 @@ impl fmt::Display for UserAuthInfo {
 
 // We want to be able to turn this back into a string
 impl TryFrom<String> for UserAuthInfo {
-    type Error = JellyfinError;
+    type Error = SeascapeError;
 
-    fn try_from(mut user_auth_info_string: String) -> Result<Self, JellyfinError> {
+    fn try_from(mut user_auth_info_string: String) -> Result<Self, SeascapeError> {
         user_auth_info_string = user_auth_info_string.replace("MediaBrowser ", "");
         user_auth_info_string = user_auth_info_string.replace(r#"""#, "");
 
@@ -153,19 +153,19 @@ impl TryFrom<String> for UserAuthInfo {
         Ok(UserAuthInfo {
             client: auth_info_pairs
                 .get("Client")
-                .ok_or(error::JellyfinError::Unknown)?
+                .ok_or(error::SeascapeError::Unknown)?
                 .to_owned(),
             device: auth_info_pairs
                 .get("Device")
-                .ok_or(error::JellyfinError::Unknown)?
+                .ok_or(error::SeascapeError::Unknown)?
                 .to_owned(),
             device_id: auth_info_pairs
                 .get("DeviceId")
-                .ok_or(error::JellyfinError::Unknown)?
+                .ok_or(error::SeascapeError::Unknown)?
                 .to_owned(),
             version: auth_info_pairs
                 .get("Version")
-                .ok_or(error::JellyfinError::Unknown)?
+                .ok_or(error::SeascapeError::Unknown)?
                 .to_owned(),
             token: auth_info_pairs.get("Token").map(String::from),
         })

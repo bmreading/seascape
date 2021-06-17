@@ -1,7 +1,7 @@
 //! Build Jellyfin clients
 
 use crate::auth::{ApiKeyAuthHeader, AuthHeaderType, UserAuthHeader, UserAuthInfo};
-use crate::error::JellyfinError;
+use crate::error::SeascapeError;
 use crate::http::{AsyncClient, HttpClientType};
 
 use super::{ClientResult, Jellyfin};
@@ -134,7 +134,7 @@ impl Builder {
         if (self.api_key.is_some() && self.username.is_some())
             || (self.api_key.is_some() && self.password.is_some())
         {
-            return Err(JellyfinError::InvalidClient(
+            return Err(SeascapeError::InvalidClient(
                 "cannot use api key auth and user auth simultaneously".to_string(),
             ));
 
@@ -142,7 +142,7 @@ impl Builder {
         } else if (self.username.is_some() && self.password.is_none())
             || (self.password.is_some() && self.username.is_none())
         {
-            return Err(JellyfinError::InvalidClient(
+            return Err(SeascapeError::InvalidClient(
                 "username and password must be used together".to_string(),
             ));
 
@@ -152,7 +152,7 @@ impl Builder {
             || (self.username.is_some() && self.password.is_some()) && (self.device_id.is_none())
             || (self.username.is_some() && self.password.is_some()) && (self.version.is_none())
         {
-            return Err(JellyfinError::InvalidClient(
+            return Err(SeascapeError::InvalidClient(
                 "user auth requires credentials and user auth params".to_string(),
             ));
 
@@ -163,7 +163,7 @@ impl Builder {
             || (self.api_key.is_some() && self.version.is_some())
             || (self.api_key.is_some() && self.token.is_some())
         {
-            return Err(JellyfinError::InvalidClient(
+            return Err(SeascapeError::InvalidClient(
                 "client, device, device_id, version, and token are only valid with user auth"
                     .to_string(),
             ));
@@ -172,7 +172,7 @@ impl Builder {
         } else if (self.token.is_some() && self.username.is_some())
             || (self.token.is_some() && self.password.is_some())
         {
-            return Err(JellyfinError::InvalidClient(
+            return Err(SeascapeError::InvalidClient(
                 "token cannot be used with username and password credentials".to_string(),
             ));
 
@@ -186,7 +186,7 @@ impl Builder {
             || (self.auth_header_type.is_some() && self.token.is_some())
             || (self.auth_header_type.is_some() && self.api_key.is_some())
         {
-            return Err(JellyfinError::InvalidClient(
+            return Err(SeascapeError::InvalidClient(
                 "auth_header cannot be used with username, password, client, device, device_id, version, nor token"
                     .to_string(),
             ));

@@ -12,12 +12,12 @@ use serde_json::json;
 use std::convert::TryFrom;
 
 use crate::auth::{AuthHeader, AuthHeaderType, UserAuthHeader, UserAuthInfo};
-use crate::error::JellyfinError;
+use crate::error::SeascapeError;
 use crate::http::{AsyncClient, HttpClient, HttpClientType};
 use crate::model::{AuthenticationResult, BaseItemDtoQueryResult};
 
 /// A type alias for a Result of generic type to be returned from a client instance
-pub type ClientResult<T> = Result<T, JellyfinError>;
+pub type ClientResult<T> = Result<T, SeascapeError>;
 
 /// A type alias for a response from Jellyfin that wraps any number of base items
 pub type ItemResponse<T> = BaseItemDtoQueryResult<T>;
