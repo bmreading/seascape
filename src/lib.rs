@@ -1,6 +1,6 @@
 //! seascape is a client library for the [Jellyfin](https://jellyfin.org)
 //! server API. This library was inspired by multiple other wrappers, especially
-//! [rspotify](https://github.com/ramsayleung/rspotify). It is still a
+//! [rspotify](https://github.com/ramsayleung/rspotify). It is still a pre-release
 //! work-in-progress, and does not yet implement the vast amount of calls that
 //! Jellyfin's API currently offers, but you can find the complete Jellyfin
 //! API reference [here](https://api.jellyfin.org).
