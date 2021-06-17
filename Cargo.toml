@@ -1,0 +1,28 @@
+[package]
+name = "seascape"
+authors = ["Brian Reading<brian.reading@gmail.com>"]
+version = "0.1.0"
+license = "MIT"
+readme = "README.md"
+description = "Jellyfin client library"
+homepage = "https://gitlab.com/bmreading/seascape"
+repository = "https://gitlab.com/bmreading/seascape"
+keywords = ["jellyfin", "api"]
+edition = "2018"
+
+[dependencies]
+async-trait = "0.1.50"
+convert_case = "0.4.0"
+derive_builder = "0.10.2"
+http = "0.2.4"
+hyper = "0.14.7"
+itertools = "0.10.1"
+regex = "1.5.4"
+reqwest = "0.11.3"
+serde = { version = "1.0.126", features = ["derive"] }
+serde_json = "1.0.64"
+thiserror = "1.0.24"
+tokio = { version = "1.4.0", features = ["full"] }
+
+[dev-dependencies]
+actix-rt = "*"
