@@ -13,7 +13,7 @@ pub enum SeascapeError {
     #[error("http client error: {0}")]
     HttpClient(#[from] crate::http::HttpClientError),
 
-    #[error("to_str error: {0}")]
+    #[error("header to_str error: {0}")]
     ToStr(#[from] http::header::ToStrError),
 
     #[error("invalid client configuration: {0}")]
