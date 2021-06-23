@@ -137,7 +137,7 @@ impl fmt::Display for UserAuthInfo {
     }
 }
 
-// We want to be able to turn this back into a string
+// We want to be able to deserialize this back into an object
 impl TryFrom<String> for UserAuthInfo {
     type Error = SeascapeError;
 
