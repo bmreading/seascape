@@ -3,7 +3,7 @@ seascape is a client library for the [Jellyfin](https://jellyfin.org) server API
 
 ## Quickstart Guide
 
-All calls to the Jellyfin API are performed using an instance of the `client::Jellyfin` struct. It is recommended to use the `client::Builder` to build this. Although there are some public methods available that don't require any authentication, almost all usage requires authentication via either API key or user-based authentication. This library only supports asynchronous operations.
+All calls to the Jellyfin API are performed using an instance of the `client::Jellyfin` struct. It is recommended to use the `client::Builder` to build this. Although there are some public methods available that don't require any authentication, almost all usage requires authentication via either API key or user-based authentication. This library only supportsasynchronous operations.
 
 ### Example
 
