@@ -1,8 +1,7 @@
 //! HTTP clients and related types
 
-use std::collections::HashMap;
-
 use async_trait::async_trait;
+use std::collections::HashMap;
 use thiserror::Error;
 
 /// An HTTP Request type with a streaming body.
