@@ -1,4 +1,6 @@
+//! Errors
 use thiserror::Error;
+
 #[derive(Error, Debug)]
 pub enum SeascapeError {
     #[error("{0}")]
