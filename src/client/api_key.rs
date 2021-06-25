@@ -34,7 +34,7 @@ impl Jellyfin {
 
         let request = RequestBuilder::new()
             .uri(url)
-            .method("DELETE")
+            .method("POST")
             .header(
                 self.auth_header_type.as_ref().unwrap().header_key_name(),
                 self.auth_header_type.as_ref().unwrap().header_value(),
@@ -56,7 +56,7 @@ impl Jellyfin {
 
         let request = RequestBuilder::new()
             .uri(url)
-            .method("POST")
+            .method("DELETE")
             .header(
                 self.auth_header_type.as_ref().unwrap().header_key_name(),
                 self.auth_header_type.as_ref().unwrap().header_value(),
