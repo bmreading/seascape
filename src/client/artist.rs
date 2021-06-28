@@ -6,6 +6,7 @@ use crate::model::BaseItemDto;
 use derive_builder::Builder;
 use itertools::Itertools;
 use serde::{Deserialize, Serialize};
+use urlencoding::encode;
 
 use super::{ClientResult, ItemResponse, Jellyfin};
 
@@ -101,6 +102,30 @@ impl Jellyfin {
         let response = self.http_client_type.send(&request, Some(&params)).await?;
         let artists = serde_json::from_str(response.body())?;
         Ok(artists)
+    }
+
+    /// Retrieves a single artist by name
+    pub async fn artist(&self, name: &str, user_id: Option<&str>) -> ClientResult<BaseItemDto> {
+        let url = format!("{}/{}/{}", self.base_url, "artists", encode(name));
+
+        let user_id = user_id.map(|x| x.to_string());
+
+        let params = build_map!(
+            optional "userId": user_id.as_deref(),
+        );
+
+        let request = http::request::Request::builder()
+            .uri(url)
+            .method("GET")
+            .header(
+                self.auth_header_type.as_ref().unwrap().header_key_name(),
+                self.auth_header_type.as_ref().unwrap().header_value(),
+            )
+            .body("".to_string())?;
+
+        let response = self.http_client_type.send(&request, Some(&params)).await?;
+        let artist = serde_json::from_str(response.body())?;
+        Ok(artist)
     }
 }
 
