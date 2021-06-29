@@ -1,6 +1,7 @@
 //! HTTP clients and related types
 
 use async_trait::async_trait;
+use log::info;
 use std::collections::HashMap;
 use thiserror::Error;
 
@@ -95,7 +96,7 @@ impl AsyncClient {
             .await
             .unwrap();
 
-        println!("Endpoint requested was: {}", reqwest_response.url());
+        info!("Endpoint requested was: {}", reqwest_response.url());
 
         if reqwest_response.status().is_success() {
             Ok(IntoResponseExt::<reqwest::Response>::into(reqwest_response).await)
