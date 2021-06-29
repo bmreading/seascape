@@ -74,8 +74,7 @@ impl Jellyfin {
 
         let response = self.http_client_type.send(&request, None).await?;
 
-        let auth_result: AuthenticationResult =
-            serde_json::from_str(response.body())?;
+        let auth_result: AuthenticationResult = serde_json::from_str(response.body())?;
 
         let user_auth_info_string = self
             .auth_header_type
