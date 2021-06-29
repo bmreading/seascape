@@ -107,9 +107,7 @@ impl Jellyfin {
     /// Retrieves a single artist by name
     pub async fn artist(&self, name: &str, user_id: Option<&str>) -> ClientResult<BaseItemDto> {
         let url = format!("{}/{}/{}", self.base_url, "artists", encode(name));
-
         let user_id = user_id.map(|x| x.to_string());
-
         let params = build_map!(
             optional "userId": user_id.as_deref(),
         );
