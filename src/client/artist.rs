@@ -15,8 +15,16 @@ impl Jellyfin {
     pub async fn artists(
         &self,
         artist_query: &ArtistQuery,
+        artist_type: &ArtistType,
     ) -> ClientResult<ItemResponse<BaseItemDto>> {
-        let url = format!("{}/{}", self.base_url, "artists");
+        let url: String;
+
+        match artist_type {
+            ArtistType::NonAlbumArtist => url = format!("{}/{}", self.base_url, "artists"),
+            ArtistType::AlbumArtist => {
+                url = format!("{}/{}/{}", self.base_url, "artists", "albumartists")
+            }
+        }
 
         let min_community_rating = artist_query.min_community_rating.map(|x| x.to_string());
         let start_index = artist_query.start_index.map(|x| x.to_string());
@@ -275,4 +283,9 @@ impl core::fmt::Display for ArtistQueryEnableImageType {
     fn fmt(&self, t: &mut core::fmt::Formatter) -> core::fmt::Result {
         write!(t, "{:?}", self)
     }
+}
+
+pub enum ArtistType {
+    AlbumArtist,
+    NonAlbumArtist,
 }
