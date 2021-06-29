@@ -70,12 +70,12 @@ impl Jellyfin {
                 self.auth_header_type.as_ref().unwrap().header_value(),
             )
             .header(header::CONTENT_TYPE, "application/json")
-            .body(body.to_string())?;
+            .body(Some(body.to_string()))?;
 
         let response = self.http_client_type.send(&request, None).await?;
 
         let auth_result: AuthenticationResult =
-            serde_json::from_str(response.body().to_owned().as_str())?;
+            serde_json::from_str(response.body())?;
 
         let user_auth_info_string = self
             .auth_header_type

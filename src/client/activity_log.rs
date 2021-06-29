@@ -26,7 +26,7 @@ impl Jellyfin {
                 self.auth_header_type.as_ref().unwrap().header_key_name(),
                 self.auth_header_type.as_ref().unwrap().header_value(),
             )
-            .body("".to_string())?;
+            .body(None)?;
 
         let start_index = start_index.map(|i| i.to_string());
         let limit = limit.map(|i| i.to_string());

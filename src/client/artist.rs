@@ -105,7 +105,7 @@ impl Jellyfin {
                 self.auth_header_type.as_ref().unwrap().header_key_name(),
                 self.auth_header_type.as_ref().unwrap().header_value(),
             )
-            .body("".to_string())?;
+            .body(None)?;
 
         let response = self.http_client_type.send(&request, Some(&params)).await?;
         let artists = serde_json::from_str(response.body())?;
@@ -127,7 +127,7 @@ impl Jellyfin {
                 self.auth_header_type.as_ref().unwrap().header_key_name(),
                 self.auth_header_type.as_ref().unwrap().header_value(),
             )
-            .body("".to_string())?;
+            .body(None)?;
 
         let response = self.http_client_type.send(&request, Some(&params)).await?;
         let artist = serde_json::from_str(response.body())?;

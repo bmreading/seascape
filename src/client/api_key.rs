@@ -17,12 +17,12 @@ impl Jellyfin {
                 self.auth_header_type.as_ref().unwrap().header_key_name(),
                 self.auth_header_type.as_ref().unwrap().header_value(),
             )
-            .body("".to_string())?;
+            .body(None)?;
 
         let response = self.http_client_type.send(&request, None).await?;
         let response_body = response.body();
 
-        Ok(serde_json::from_str(response_body.as_str())?)
+        Ok(serde_json::from_str(response_body)?)
     }
 
     /// Adds an API key
@@ -39,12 +39,12 @@ impl Jellyfin {
                 self.auth_header_type.as_ref().unwrap().header_key_name(),
                 self.auth_header_type.as_ref().unwrap().header_value(),
             )
-            .body("".to_string())?;
+            .body(None)?;
 
         let response = self.http_client_type.send(&request, Some(&params)).await?;
         let response_body = response.body();
 
-        Ok(serde_json::from_str(response_body.as_str())?)
+        Ok(serde_json::from_str(response_body)?)
     }
 
     /// Removes an API key
@@ -61,11 +61,11 @@ impl Jellyfin {
                 self.auth_header_type.as_ref().unwrap().header_key_name(),
                 self.auth_header_type.as_ref().unwrap().header_value(),
             )
-            .body("".to_string())?;
+            .body(None)?;
 
         let response = self.http_client_type.send(&request, Some(&params)).await?;
         let response_body = response.body();
 
-        Ok(serde_json::from_str(response_body.as_str())?)
+        Ok(serde_json::from_str(response_body)?)
     }
 }
