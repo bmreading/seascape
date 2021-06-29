@@ -16,7 +16,7 @@
 //!
 //! ### Example
 //!
-//!```
+//!```ignore
 //! let jellyfin = client::Builder::new("https://jellyfin.mydomain.com")
 //!     .username("MyUsername")
 //!     .password("MyPassword")
@@ -28,7 +28,8 @@
 //!     .await
 //!     .unwrap();
 //!
-//! let user_views = jellyfin.user_views(user_id: "MyUsername", None, None, None);   
+//! let artist = jellyfin.artist("Iron Maiden", None).await.unwrap();
+//! println!("Album count is {}.", artist.album_count.unwrap()); 
 //! ```
 
 #[macro_use]
