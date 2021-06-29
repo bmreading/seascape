@@ -11,7 +11,7 @@ use urlencoding::encode;
 use super::{ClientResult, ItemResponse, Jellyfin};
 
 impl Jellyfin {
-    /// Retrieves artists
+    /// Retrieves artists or album artists
     pub async fn artists(
         &self,
         artist_query: &ArtistQuery,
