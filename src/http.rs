@@ -5,7 +5,7 @@ use std::collections::HashMap;
 use thiserror::Error;
 
 /// An HTTP Request type with a streaming body.
-pub type Request = http::Request<String>;
+pub type Request = http::Request<Option<String>>;
 pub type RequestBuilder = http::request::Builder;
 
 /// An HTTP Response type with a streaming body.
@@ -83,12 +83,14 @@ impl AsyncClient {
         req: &Request,
         query_params: Option<&QueryParamMap<'_>>,
     ) -> Result<Response, Error> {
+        let body = if let Some(b) = req.body() { b } else { "" };
+
         let reqwest_response = self
             .backing_client
             .request(req.method().to_owned(), req.uri().to_string())
             .headers(req.headers().to_owned())
             .query(&query_params)
-            .body(req.body().to_owned())
+            .body(body.to_owned())
             .send()
             .await
             .unwrap();
