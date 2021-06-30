@@ -92,6 +92,7 @@ pub struct UserAuthInfo {
 }
 
 impl UserAuthInfo {
+    /// Returns a new UserAuthInfo instance
     pub fn new(
         client: &str,
         device: &str,
@@ -108,6 +109,7 @@ impl UserAuthInfo {
         }
     }
 
+    /// Sets authentication token
     pub fn set_token(&mut self, token: &str) -> &UserAuthInfo {
         self.token = Some(String::from(token));
         self
