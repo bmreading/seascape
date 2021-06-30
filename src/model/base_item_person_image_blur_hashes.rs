@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 /// The primary image blurhash.
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct BaseItemPersonImageBlurHashes {
     #[serde(rename = "Primary", skip_serializing_if = "Option::is_none")]
     pub primary: Option<::std::collections::HashMap<String, String>>,
@@ -30,25 +30,4 @@ pub struct BaseItemPersonImageBlurHashes {
     pub box_rear: Option<::std::collections::HashMap<String, String>>,
     #[serde(rename = "Profile", skip_serializing_if = "Option::is_none")]
     pub profile: Option<::std::collections::HashMap<String, String>>,
-}
-
-impl BaseItemPersonImageBlurHashes {
-    /// Returns a new instance of BaseItemPersonImageBlurHashes
-    pub fn new() -> BaseItemPersonImageBlurHashes {
-        BaseItemPersonImageBlurHashes {
-            primary: None,
-            art: None,
-            backdrop: None,
-            banner: None,
-            logo: None,
-            thumb: None,
-            disc: None,
-            _box: None,
-            screenshot: None,
-            menu: None,
-            chapter: None,
-            box_rear: None,
-            profile: None,
-        }
-    }
 }
