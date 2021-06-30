@@ -25,7 +25,7 @@ pub struct ClientCapabilities {
     pub supports_persistent_identifier: Option<bool>,
     #[serde(rename = "SupportsSync", skip_serializing_if = "Option::is_none")]
     pub supports_sync: Option<bool>,
-    /// Defines the MediaBrowser.Model.Dlna.DeviceProfile.
+    /// Defines the DLNA DeviceProfile.
     #[serde(rename = "DeviceProfile", skip_serializing_if = "Option::is_none")]
     pub device_profile: Option<Box<crate::model::DeviceProfile>>,
     #[serde(rename = "AppStoreUrl", skip_serializing_if = "Option::is_none")]
