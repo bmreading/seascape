@@ -1,43 +1,42 @@
 use serde::{Deserialize, Serialize};
 
-/// MediaStream : Class MediaStream.
-
+/// A media stream
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MediaStream {
-    /// Gets or sets the codec.
+    /// The codec.
     #[serde(rename = "Codec", skip_serializing_if = "Option::is_none")]
     pub codec: Option<String>,
-    /// Gets or sets the codec tag.
+    /// The codec tag.
     #[serde(rename = "CodecTag", skip_serializing_if = "Option::is_none")]
     pub codec_tag: Option<String>,
-    /// Gets or sets the language.
+    /// The language.
     #[serde(rename = "Language", skip_serializing_if = "Option::is_none")]
     pub language: Option<String>,
-    /// Gets or sets the color range.
+    /// The color range.
     #[serde(rename = "ColorRange", skip_serializing_if = "Option::is_none")]
     pub color_range: Option<String>,
-    /// Gets or sets the color space.
+    /// The color space.
     #[serde(rename = "ColorSpace", skip_serializing_if = "Option::is_none")]
     pub color_space: Option<String>,
-    /// Gets or sets the color transfer.
+    /// The color transfer.
     #[serde(rename = "ColorTransfer", skip_serializing_if = "Option::is_none")]
     pub color_transfer: Option<String>,
-    /// Gets or sets the color primaries.
+    /// The color primaries.
     #[serde(rename = "ColorPrimaries", skip_serializing_if = "Option::is_none")]
     pub color_primaries: Option<String>,
-    /// Gets or sets the comment.
+    /// The comment.
     #[serde(rename = "Comment", skip_serializing_if = "Option::is_none")]
     pub comment: Option<String>,
-    /// Gets or sets the time base.
+    /// The time base.
     #[serde(rename = "TimeBase", skip_serializing_if = "Option::is_none")]
     pub time_base: Option<String>,
-    /// Gets or sets the codec time base.
+    /// The codec time base.
     #[serde(rename = "CodecTimeBase", skip_serializing_if = "Option::is_none")]
     pub codec_time_base: Option<String>,
-    /// Gets or sets the title.
+    /// The title.
     #[serde(rename = "Title", skip_serializing_if = "Option::is_none")]
     pub title: Option<String>,
-    /// Gets or sets the video range.
+    /// The video range.
     #[serde(rename = "VideoRange", skip_serializing_if = "Option::is_none")]
     pub video_range: Option<String>,
     #[serde(rename = "localizedUndefined", skip_serializing_if = "Option::is_none")]
@@ -50,75 +49,75 @@ pub struct MediaStream {
     pub display_title: Option<String>,
     #[serde(rename = "NalLengthSize", skip_serializing_if = "Option::is_none")]
     pub nal_length_size: Option<String>,
-    /// Gets or sets a value indicating whether this instance is interlaced.
+    /// A value indicating whether this instance is interlaced.
     #[serde(rename = "IsInterlaced", skip_serializing_if = "Option::is_none")]
     pub is_interlaced: Option<bool>,
     #[serde(rename = "IsAVC", skip_serializing_if = "Option::is_none")]
     pub is_avc: Option<bool>,
-    /// Gets or sets the channel layout.
+    /// The channel layout.
     #[serde(rename = "ChannelLayout", skip_serializing_if = "Option::is_none")]
     pub channel_layout: Option<String>,
-    /// Gets or sets the bit rate.
+    /// The bit rate.
     #[serde(rename = "BitRate", skip_serializing_if = "Option::is_none")]
     pub bit_rate: Option<i32>,
-    /// Gets or sets the bit depth.
+    /// The bit depth.
     #[serde(rename = "BitDepth", skip_serializing_if = "Option::is_none")]
     pub bit_depth: Option<i32>,
-    /// Gets or sets the reference frames.
+    /// The reference frames.
     #[serde(rename = "RefFrames", skip_serializing_if = "Option::is_none")]
     pub ref_frames: Option<i32>,
-    /// Gets or sets the length of the packet.
+    /// The length of the packet.
     #[serde(rename = "PacketLength", skip_serializing_if = "Option::is_none")]
     pub packet_length: Option<i32>,
-    /// Gets or sets the channels.
+    /// The channels.
     #[serde(rename = "Channels", skip_serializing_if = "Option::is_none")]
     pub channels: Option<i32>,
-    /// Gets or sets the sample rate.
+    /// The sample rate.
     #[serde(rename = "SampleRate", skip_serializing_if = "Option::is_none")]
     pub sample_rate: Option<i32>,
-    /// Gets or sets a value indicating whether this instance is default.
+    /// A value indicating whether this instance is default.
     #[serde(rename = "IsDefault", skip_serializing_if = "Option::is_none")]
     pub is_default: Option<bool>,
-    /// Gets or sets a value indicating whether this instance is forced.
+    /// A value indicating whether this instance is forced.
     #[serde(rename = "IsForced", skip_serializing_if = "Option::is_none")]
     pub is_forced: Option<bool>,
-    /// Gets or sets the height.
+    /// The height.
     #[serde(rename = "Height", skip_serializing_if = "Option::is_none")]
     pub height: Option<i32>,
-    /// Gets or sets the width.
+    /// The width.
     #[serde(rename = "Width", skip_serializing_if = "Option::is_none")]
     pub width: Option<i32>,
-    /// Gets or sets the average frame rate.
+    /// The average frame rate.
     #[serde(rename = "AverageFrameRate", skip_serializing_if = "Option::is_none")]
     pub average_frame_rate: Option<f32>,
-    /// Gets or sets the real frame rate.
+    /// The real frame rate.
     #[serde(rename = "RealFrameRate", skip_serializing_if = "Option::is_none")]
     pub real_frame_rate: Option<f32>,
-    /// Gets or sets the profile.
+    /// The profile.
     #[serde(rename = "Profile", skip_serializing_if = "Option::is_none")]
     pub profile: Option<String>,
-    /// Gets or sets the type.
+    /// The type.
     #[serde(rename = "Type", skip_serializing_if = "Option::is_none")]
     pub _type: Option<Box<crate::model::MediaStreamType>>,
-    /// Gets or sets the aspect ratio.
+    /// The aspect ratio.
     #[serde(rename = "AspectRatio", skip_serializing_if = "Option::is_none")]
     pub aspect_ratio: Option<String>,
-    /// Gets or sets the index.
+    /// The index.
     #[serde(rename = "Index", skip_serializing_if = "Option::is_none")]
     pub index: Option<i32>,
-    /// Gets or sets the score.
+    /// The score.
     #[serde(rename = "Score", skip_serializing_if = "Option::is_none")]
     pub score: Option<i32>,
-    /// Gets or sets a value indicating whether this instance is external.
+    /// A value indicating whether this instance is external.
     #[serde(rename = "IsExternal", skip_serializing_if = "Option::is_none")]
     pub is_external: Option<bool>,
-    /// Gets or sets the method.
+    /// The method.
     #[serde(rename = "DeliveryMethod", skip_serializing_if = "Option::is_none")]
     pub delivery_method: Option<Box<crate::model::SubtitleDeliveryMethod>>,
-    /// Gets or sets the delivery URL.
+    /// The delivery URL.
     #[serde(rename = "DeliveryUrl", skip_serializing_if = "Option::is_none")]
     pub delivery_url: Option<String>,
-    /// Gets or sets a value indicating whether this instance is external URL.
+    /// A value indicating whether this instance is external URL.
     #[serde(rename = "IsExternalUrl", skip_serializing_if = "Option::is_none")]
     pub is_external_url: Option<bool>,
     #[serde(
@@ -126,19 +125,19 @@ pub struct MediaStream {
         skip_serializing_if = "Option::is_none"
     )]
     pub is_text_subtitle_stream: Option<bool>,
-    /// Gets or sets a value indicating whether [supports external stream].
+    /// A value indicating whether [supports external stream].
     #[serde(
         rename = "SupportsExternalStream",
         skip_serializing_if = "Option::is_none"
     )]
     pub supports_external_stream: Option<bool>,
-    /// Gets or sets the filename.
+    /// The filename.
     #[serde(rename = "Path", skip_serializing_if = "Option::is_none")]
     pub path: Option<String>,
-    /// Gets or sets the pixel format.
+    /// The pixel format.
     #[serde(rename = "PixelFormat", skip_serializing_if = "Option::is_none")]
     pub pixel_format: Option<String>,
-    /// Gets or sets the level.
+    /// The level.
     #[serde(rename = "Level", skip_serializing_if = "Option::is_none")]
     pub level: Option<f64>,
     /// Gets a value indicating whether this instance is anamorphic.
