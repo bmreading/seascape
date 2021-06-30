@@ -173,3 +173,117 @@ impl TryFrom<String> for UserAuthInfo {
         })
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn new_user_auth_info_inits_client() {
+        let user_auth_info = UserAuthInfo::new(
+            "Fake Client",
+            "Fake Device",
+            "Fake ID",
+            "0.1.0",
+            Some("Fake Token"),
+        );
+        assert_eq!(user_auth_info.client, "Fake Client");
+    }
+
+    #[test]
+    fn new_user_auth_info_inits_device() {
+        let user_auth_info = UserAuthInfo::new(
+            "Fake Client",
+            "Fake Device",
+            "Fake ID",
+            "0.1.0",
+            Some("Fake Token"),
+        );
+        assert_eq!(user_auth_info.device, "Fake Device");
+    }
+
+    #[test]
+    fn new_user_auth_info_inits_device_id() {
+        let user_auth_info = UserAuthInfo::new(
+            "Fake Client",
+            "Fake Device",
+            "Fake ID",
+            "0.1.0",
+            Some("Fake Token"),
+        );
+        assert_eq!(user_auth_info.device_id, "Fake ID");
+    }
+
+    #[test]
+    fn new_user_auth_info_inits_version() {
+        let user_auth_info = UserAuthInfo::new(
+            "Fake Client",
+            "Fake Device",
+            "Fake ID",
+            "0.1.0",
+            Some("Fake Token"),
+        );
+        assert_eq!(user_auth_info.version, "0.1.0");
+    }
+
+    #[test]
+    fn new_user_auth_info_inits_some_token() {
+        let user_auth_info = UserAuthInfo::new(
+            "Fake Client",
+            "Fake Device",
+            "Fake ID",
+            "0.1.0",
+            Some("Fake Token"),
+        );
+        assert_eq!(user_auth_info.token.is_some(), true);
+    }
+
+    #[test]
+    fn new_user_auth_info_inits_none_token() {
+        let user_auth_info =
+            UserAuthInfo::new("Fake Client", "Fake Device", "Fake ID", "0.1.0", None);
+        assert_eq!(user_auth_info.token.is_none(), true);
+    }
+
+    #[test]
+    fn user_auth_info_serializes() {
+        let user_auth_info = UserAuthInfo::new(
+            "Fake Client",
+            "Fake Device",
+            "Fake ID",
+            "0.1.0",
+            Some("Fake Token"),
+        );
+
+        let user_auth_info_string = user_auth_info.to_string();
+
+        assert_eq!(
+            user_auth_info_string.as_str(),
+            "MediaBrowser Client=\"Fake Client\", \
+            Device=\"Fake Device\", \
+            DeviceId=\"Fake ID\", \
+            Version=\"0.1.0\", \
+            Token=\"Fake Token\""
+        );
+    }
+
+    #[test]
+    fn user_auth_info_deserializes() {
+        let user_auth_info_string = String::from(
+            "MediaBrowser Client=\"Fake Client\", \
+            Device=\"Fake Device\", \
+            DeviceId=\"Fake ID\", \
+            Version=\"0.1.0\", \
+            Token=\"Fake Token\"",
+        );
+
+        let user_auth_info = UserAuthInfo::try_from(user_auth_info_string);
+
+        assert_eq!(user_auth_info.is_ok(), true);
+        assert_eq!(user_auth_info.as_ref().unwrap().client, "Fake Client");
+        assert_eq!(user_auth_info.as_ref().unwrap().device, "Fake Device");
+        assert_eq!(user_auth_info.as_ref().unwrap().device_id, "Fake ID");
+        assert_eq!(user_auth_info.as_ref().unwrap().version, "0.1.0");
+        assert_eq!(user_auth_info.as_ref().unwrap().token.is_some(), true);
+    }
+}
