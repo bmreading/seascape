@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-/// BaseItemPersonImageBlurHashes : Gets or sets the primary image blurhash.
+/// The primary image blurhash.
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct BaseItemPersonImageBlurHashes {
@@ -33,7 +33,7 @@ pub struct BaseItemPersonImageBlurHashes {
 }
 
 impl BaseItemPersonImageBlurHashes {
-    /// Gets or sets the primary image blurhash.
+    /// Returns a new instance of BaseItemPersonImageBlurHashes
     pub fn new() -> BaseItemPersonImageBlurHashes {
         BaseItemPersonImageBlurHashes {
             primary: None,
