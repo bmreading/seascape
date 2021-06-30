@@ -488,9 +488,9 @@ pub struct BaseItemDto {
     pub current_program: Option<Box<crate::model::BaseItemDto>>,
 }
 
-impl BaseItemDto {
-    /// Returns a new BaseItemDto instance
-    pub fn new() -> BaseItemDto {
+impl Default for BaseItemDto {
+    /// Returns a default BaseItemDto instance
+    fn default() -> BaseItemDto {
         BaseItemDto {
             name: None,
             original_title: None,
