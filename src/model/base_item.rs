@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-/// BaseItem : Class BaseItem.
+/// BaseItem
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct BaseItem {
@@ -32,9 +32,9 @@ pub struct BaseItem {
     pub supports_external_transfer: Option<bool>,
 }
 
-impl BaseItem {
-    /// Class BaseItem.
-    pub fn new() -> BaseItem {
+impl Default for BaseItem {
+    /// Returns a default BaseItem instance. All fields are None.
+    fn default() -> BaseItem {
         BaseItem {
             size: None,
             container: None,
