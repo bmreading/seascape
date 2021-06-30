@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 /// Data regarding a user item.
-#[derive(Clone, Debug, Default,PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct UserItemDataDto {
     /// The rating.
     #[serde(rename = "Rating", skip_serializing_if = "Option::is_none")]

@@ -29,10 +29,7 @@ impl Jellyfin {
         let min_community_rating = artist_query.min_community_rating.map(|x| x.to_string());
         let start_index = artist_query.start_index.map(|x| x.to_string());
         let limit = artist_query.limit.map(|x| x.to_string());
-        let fields = artist_query
-            .fields
-            .as_ref()
-            .map(|x| x.iter().join(","));
+        let fields = artist_query.fields.as_ref().map(|x| x.iter().join(","));
         let exclude_item_types = artist_query
             .exclude_item_types
             .as_ref()
@@ -41,10 +38,7 @@ impl Jellyfin {
             .include_item_types
             .as_ref()
             .map(|x| x.join(","));
-        let filters = artist_query
-            .filters
-            .as_ref()
-            .map(|x| x.iter().join(","));
+        let filters = artist_query.filters.as_ref().map(|x| x.iter().join(","));
         let is_favorite = artist_query.is_favorite.map(|x| x.to_string());
         let media_types = artist_query.media_types.as_ref().map(|x| x.join(","));
         let genres = artist_query.genres.as_ref().map(|x| x.join(","));
