@@ -87,8 +87,12 @@ impl Jellyfin {
 
         let mut token_auth_info = UserAuthInfo::try_from(user_auth_info_string)?;
 
-        // TO DO: Don't do clone
-        token_auth_info.token = auth_result.access_token.clone();
+        token_auth_info.set_token(
+            auth_result
+                .access_token
+                .as_ref()
+                .ok_or(SeascapeError::EmptyToken())?,
+        );
 
         let token_auth_header = UserAuthHeader::new(token_auth_info);
         let token_auth_header_type = AuthHeaderType::UserAuthHeaderType(token_auth_header);

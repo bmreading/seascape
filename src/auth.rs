@@ -88,7 +88,7 @@ pub struct UserAuthInfo {
     device: String,
     device_id: String,
     version: String,
-    pub token: Option<String>,
+    token: Option<String>,
 }
 
 impl UserAuthInfo {
@@ -106,6 +106,11 @@ impl UserAuthInfo {
             version: version.to_string(),
             token: token.map(String::from),
         }
+    }
+
+    pub fn set_token(&mut self, token: &str) -> &UserAuthInfo {
+        self.token = Some(String::from(token));
+        self
     }
 }
 
@@ -285,5 +290,15 @@ mod tests {
         assert_eq!(user_auth_info.as_ref().unwrap().device_id, "Fake ID");
         assert_eq!(user_auth_info.as_ref().unwrap().version, "0.1.0");
         assert_eq!(user_auth_info.as_ref().unwrap().token.is_some(), true);
+    }
+
+    #[test]
+    fn user_auth_info_sets_token() {
+        let mut user_auth_info =
+            UserAuthInfo::new("Fake Client", "Fake Device", "Fake ID", "0.1.0", None);
+
+        user_auth_info.set_token("Fake Token");
+
+        assert_eq!(user_auth_info.token.unwrap(), String::from("Fake Token"));
     }
 }
