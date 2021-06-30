@@ -32,7 +32,7 @@ impl Jellyfin {
         let fields = artist_query
             .fields
             .as_ref()
-            .map(|x| x.into_iter().join(","));
+            .map(|x| x.iter().join(","));
         let exclude_item_types = artist_query
             .exclude_item_types
             .as_ref()
@@ -44,19 +44,19 @@ impl Jellyfin {
         let filters = artist_query
             .filters
             .as_ref()
-            .map(|x| x.into_iter().join(","));
+            .map(|x| x.iter().join(","));
         let is_favorite = artist_query.is_favorite.map(|x| x.to_string());
         let media_types = artist_query.media_types.as_ref().map(|x| x.join(","));
         let genres = artist_query.genres.as_ref().map(|x| x.join(","));
         let official_ratings = artist_query.official_ratings.as_ref().map(|x| x.join(","));
         let tags = artist_query.tags.as_ref().map(|x| x.join(","));
-        let years = artist_query.years.as_ref().map(|x| x.into_iter().join(","));
+        let years = artist_query.years.as_ref().map(|x| x.iter().join(","));
         let enable_user_data = artist_query.enable_user_data.map(|x| x.to_string());
         let image_type_limit = artist_query.image_type_limit.map(|x| x.to_string());
         let enable_image_types = artist_query
             .enable_image_types
             .as_ref()
-            .map(|x| x.into_iter().join(","));
+            .map(|x| x.iter().join(","));
         let person_ids = artist_query.person_ids.as_ref().map(|x| x.join(","));
         let person_types = artist_query.person_types.as_ref().map(|x| x.join(","));
         let studios = artist_query.studios.as_ref().map(|x| x.join(","));
