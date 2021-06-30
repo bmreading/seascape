@@ -18,9 +18,9 @@ pub struct AuthenticationResult {
     pub server_id: Option<String>,
 }
 
-impl AuthenticationResult {
-    /// Returns a new authentication result.
-    pub fn new() -> AuthenticationResult {
+impl Default for AuthenticationResult {
+    /// Returns a default authentication result. All fields are None.
+    fn default() -> AuthenticationResult {
         AuthenticationResult {
             user: None,
             session_info: None,
