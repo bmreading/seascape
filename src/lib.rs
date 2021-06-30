@@ -1,3 +1,4 @@
+#![doc(html_logo_url = "https://gitlab.com/bmreading/seascape/-/raw/main/assets/logo.svg")]
 //! seascape is a client library for the [Jellyfin](https://jellyfin.org)
 //! server API. This library was inspired by multiple other wrappers, especially
 //! [rspotify](https://github.com/ramsayleung/rspotify). It is still a pre-release
