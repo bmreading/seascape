@@ -1,16 +1,15 @@
 use serde::{Deserialize, Serialize};
 
-/// ChapterInfo : Class ChapterInfo.
-
+/// ChapterInfo
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ChapterInfo {
-    /// Gets or sets the start position ticks.
+    /// The start position ticks.
     #[serde(rename = "StartPositionTicks", skip_serializing_if = "Option::is_none")]
     pub start_position_ticks: Option<i64>,
-    /// Gets or sets the name.
+    /// The name.
     #[serde(rename = "Name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
-    /// Gets or sets the image path.
+    /// The image path.
     #[serde(rename = "ImagePath", skip_serializing_if = "Option::is_none")]
     pub image_path: Option<String>,
     #[serde(rename = "ImageDateModified", skip_serializing_if = "Option::is_none")]
