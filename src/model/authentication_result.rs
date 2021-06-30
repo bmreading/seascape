@@ -2,7 +2,7 @@
 use serde::{Deserialize, Serialize};
 
 /// Represents an authentication result.
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AuthenticationResult {
     /// A user data transfer object.
     #[serde(rename = "User", skip_serializing_if = "Option::is_none")]
@@ -16,16 +16,4 @@ pub struct AuthenticationResult {
     /// A unique identifier of the server that has been authenticated to.
     #[serde(rename = "ServerId", skip_serializing_if = "Option::is_none")]
     pub server_id: Option<String>,
-}
-
-impl Default for AuthenticationResult {
-    /// Returns a default authentication result. All fields are None.
-    fn default() -> AuthenticationResult {
-        AuthenticationResult {
-            user: None,
-            session_info: None,
-            access_token: None,
-            server_id: None,
-        }
-    }
 }
