@@ -1,165 +1,165 @@
 use serde::{Deserialize, Serialize};
-/// DeviceProfile : Defines the MediaBrowser.Model.Dlna.DeviceProfile.
 
+/// A DLNA DeviceProfile.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DeviceProfile {
-    /// Gets or sets the Name.
+    /// The Name.
     #[serde(rename = "Name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
-    /// Gets or sets the Id.
+    /// The Id.
     #[serde(rename = "Id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
-    /// Gets or sets the Identification.
+    /// The Identification.
     #[serde(rename = "Identification", skip_serializing_if = "Option::is_none")]
     pub identification: Option<Box<crate::model::DeviceIdentification>>,
-    /// Gets or sets the FriendlyName.
+    /// The FriendlyName.
     #[serde(rename = "FriendlyName", skip_serializing_if = "Option::is_none")]
     pub friendly_name: Option<String>,
-    /// Gets or sets the Manufacturer.
+    /// The Manufacturer.
     #[serde(rename = "Manufacturer", skip_serializing_if = "Option::is_none")]
     pub manufacturer: Option<String>,
-    /// Gets or sets the ManufacturerUrl.
+    /// The Manufacturer Url.
     #[serde(rename = "ManufacturerUrl", skip_serializing_if = "Option::is_none")]
     pub manufacturer_url: Option<String>,
-    /// Gets or sets the ModelName.
+    /// The Model Name.
     #[serde(rename = "ModelName", skip_serializing_if = "Option::is_none")]
     pub model_name: Option<String>,
-    /// Gets or sets the ModelDescription.
+    /// The Model Description.
     #[serde(rename = "ModelDescription", skip_serializing_if = "Option::is_none")]
     pub model_description: Option<String>,
-    /// Gets or sets the ModelNumber.
+    /// The Model Number.
     #[serde(rename = "ModelNumber", skip_serializing_if = "Option::is_none")]
     pub model_number: Option<String>,
-    /// Gets or sets the ModelUrl.
+    /// The Model Url.
     #[serde(rename = "ModelUrl", skip_serializing_if = "Option::is_none")]
     pub model_url: Option<String>,
-    /// Gets or sets the SerialNumber.
+    /// The Serial Number.
     #[serde(rename = "SerialNumber", skip_serializing_if = "Option::is_none")]
     pub serial_number: Option<String>,
-    /// Gets or sets a value indicating whether EnableAlbumArtInDidl.
+    /// A value indicating whether Album Art is enabled In Didl.
     #[serde(
         rename = "EnableAlbumArtInDidl",
         skip_serializing_if = "Option::is_none"
     )]
     pub enable_album_art_in_didl: Option<bool>,
-    /// Gets or sets a value indicating whether EnableSingleAlbumArtLimit.
+    /// A value indicating whether Single Album Art Limit is enabled.
     #[serde(
         rename = "EnableSingleAlbumArtLimit",
         skip_serializing_if = "Option::is_none"
     )]
     pub enable_single_album_art_limit: Option<bool>,
-    /// Gets or sets a value indicating whether EnableSingleSubtitleLimit.
+    /// A value indicating whether Single Subtitle Limit is enabled.
     #[serde(
         rename = "EnableSingleSubtitleLimit",
         skip_serializing_if = "Option::is_none"
     )]
     pub enable_single_subtitle_limit: Option<bool>,
-    /// Gets or sets the SupportedMediaTypes.
+    /// The supported media types.
     #[serde(
         rename = "SupportedMediaTypes",
         skip_serializing_if = "Option::is_none"
     )]
     pub supported_media_types: Option<String>,
-    /// Gets or sets the UserId.
+    /// The User Id.
     #[serde(rename = "UserId", skip_serializing_if = "Option::is_none")]
     pub user_id: Option<String>,
-    /// Gets or sets the AlbumArtPn.
+    /// The Album Art Pn.
     #[serde(rename = "AlbumArtPn", skip_serializing_if = "Option::is_none")]
     pub album_art_pn: Option<String>,
-    /// Gets or sets the MaxAlbumArtWidth.
+    /// The maximum album art width.
     #[serde(rename = "MaxAlbumArtWidth", skip_serializing_if = "Option::is_none")]
     pub max_album_art_width: Option<i32>,
-    /// Gets or sets the MaxAlbumArtHeight.
+    /// The maximum album art height.
     #[serde(rename = "MaxAlbumArtHeight", skip_serializing_if = "Option::is_none")]
     pub max_album_art_height: Option<i32>,
-    /// Gets or sets the MaxIconWidth.
+    /// The maximum icon width.
     #[serde(rename = "MaxIconWidth", skip_serializing_if = "Option::is_none")]
     pub max_icon_width: Option<i32>,
-    /// Gets or sets the MaxIconHeight.
+    /// The maximum icon height.
     #[serde(rename = "MaxIconHeight", skip_serializing_if = "Option::is_none")]
     pub max_icon_height: Option<i32>,
-    /// Gets or sets the MaxStreamingBitrate.
+    /// The maximum streaming bitrate.
     #[serde(
         rename = "MaxStreamingBitrate",
         skip_serializing_if = "Option::is_none"
     )]
     pub max_streaming_bitrate: Option<i32>,
-    /// Gets or sets the MaxStaticBitrate.
+    /// The maximum static bitrate.
     #[serde(rename = "MaxStaticBitrate", skip_serializing_if = "Option::is_none")]
     pub max_static_bitrate: Option<i32>,
-    /// Gets or sets the MusicStreamingTranscodingBitrate.
+    /// The music streaming transcoding bitrate.
     #[serde(
         rename = "MusicStreamingTranscodingBitrate",
         skip_serializing_if = "Option::is_none"
     )]
     pub music_streaming_transcoding_bitrate: Option<i32>,
-    /// Gets or sets the MaxStaticMusicBitrate.
+    /// The maximum static music bitrate.
     #[serde(
         rename = "MaxStaticMusicBitrate",
         skip_serializing_if = "Option::is_none"
     )]
     pub max_static_music_bitrate: Option<i32>,
-    /// Gets or sets the content of the aggregationFlags element in the urn:schemas-sonycom:av namespace.
+    /// The content of the aggregationFlags element in the urn:schemas-sonycom:av namespace.
     #[serde(
         rename = "SonyAggregationFlags",
         skip_serializing_if = "Option::is_none"
     )]
     pub sony_aggregation_flags: Option<String>,
-    /// Gets or sets the ProtocolInfo.
+    /// The Protocol Info.
     #[serde(rename = "ProtocolInfo", skip_serializing_if = "Option::is_none")]
     pub protocol_info: Option<String>,
-    /// Gets or sets the TimelineOffsetSeconds.
+    /// The Timeline Offset Seconds.
     #[serde(
         rename = "TimelineOffsetSeconds",
         skip_serializing_if = "Option::is_none"
     )]
     pub timeline_offset_seconds: Option<i32>,
-    /// Gets or sets a value indicating whether RequiresPlainVideoItems.
+    /// A value indicating whether plain video items are required.
     #[serde(
         rename = "RequiresPlainVideoItems",
         skip_serializing_if = "Option::is_none"
     )]
     pub requires_plain_video_items: Option<bool>,
-    /// Gets or sets a value indicating whether RequiresPlainFolders.
+    /// A value indicating whether plain folders are required.
     #[serde(
         rename = "RequiresPlainFolders",
         skip_serializing_if = "Option::is_none"
     )]
     pub requires_plain_folders: Option<bool>,
-    /// Gets or sets a value indicating whether EnableMSMediaReceiverRegistrar.
+    /// A value indicating whether MSMediaReceiverRegistrar is enabled.
     #[serde(
         rename = "EnableMSMediaReceiverRegistrar",
         skip_serializing_if = "Option::is_none"
     )]
     pub enable_ms_media_receiver_registrar: Option<bool>,
-    /// Gets or sets a value indicating whether IgnoreTranscodeByteRangeRequests.
+    /// A value indicating whether to ignore transcode byte range requests.
     #[serde(
         rename = "IgnoreTranscodeByteRangeRequests",
         skip_serializing_if = "Option::is_none"
     )]
     pub ignore_transcode_byte_range_requests: Option<bool>,
-    /// Gets or sets the XmlRootAttributes.
+    /// The XML root attributes.
     #[serde(rename = "XmlRootAttributes", skip_serializing_if = "Option::is_none")]
     pub xml_root_attributes: Option<Vec<crate::model::XmlAttribute>>,
-    /// Gets or sets the direct play profiles.
+    /// The direct play profiles.
     #[serde(rename = "DirectPlayProfiles", skip_serializing_if = "Option::is_none")]
     pub direct_play_profiles: Option<Vec<crate::model::DirectPlayProfile>>,
-    /// Gets or sets the transcoding profiles.
+    /// The transcoding profiles.
     #[serde(
         rename = "TranscodingProfiles",
         skip_serializing_if = "Option::is_none"
     )]
     pub transcoding_profiles: Option<Vec<crate::model::TranscodingProfile>>,
-    /// Gets or sets the ContainerProfiles.
+    /// The container profiles.
     #[serde(rename = "ContainerProfiles", skip_serializing_if = "Option::is_none")]
     pub container_profiles: Option<Vec<crate::model::ContainerProfile>>,
-    /// Gets or sets the CodecProfiles.
+    /// The codec profiles.
     #[serde(rename = "CodecProfiles", skip_serializing_if = "Option::is_none")]
     pub codec_profiles: Option<Vec<crate::model::CodecProfile>>,
-    /// Gets or sets the ResponseProfiles.
+    /// The response profiles.
     #[serde(rename = "ResponseProfiles", skip_serializing_if = "Option::is_none")]
     pub response_profiles: Option<Vec<crate::model::ResponseProfile>>,
-    /// Gets or sets the SubtitleProfiles.
+    /// The subtitle profiles.
     #[serde(rename = "SubtitleProfiles", skip_serializing_if = "Option::is_none")]
     pub subtitle_profiles: Option<Vec<crate::model::SubtitleProfile>>,
 }
