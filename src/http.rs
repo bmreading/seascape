@@ -29,6 +29,9 @@ pub enum HttpClientError {
     #[error("jellyfin returned forbidden error. check authorization level.")]
     Forbidden,
 
+    #[error("jellyfin returned not found error. check parameters.")]
+    NotFound,
+
     #[error("unknown jellyfin error")]
     Unknown,
 }
@@ -39,6 +42,8 @@ impl HttpClientError {
             Self::Unauthorized
         } else if code == 403 {
             Self::Forbidden
+        } else if code == 404 {
+            Self::NotFound
         } else {
             Self::Unknown
         }
