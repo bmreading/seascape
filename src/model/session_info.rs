@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 /// Information about a session
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct SessionInfo {
     #[serde(rename = "PlayState", skip_serializing_if = "Option::is_none")]
     pub play_state: Option<Box<crate::model::PlayerStateInfo>>,
@@ -91,40 +91,4 @@ pub struct SessionInfo {
     /// The supported commands.
     #[serde(rename = "SupportedCommands", skip_serializing_if = "Option::is_none")]
     pub supported_commands: Option<Vec<crate::model::GeneralCommandType>>,
-}
-
-impl SessionInfo {
-    /// Class SessionInfo.
-    pub fn new() -> SessionInfo {
-        SessionInfo {
-            play_state: None,
-            additional_users: None,
-            capabilities: None,
-            remote_end_point: None,
-            playable_media_types: None,
-            id: None,
-            user_id: None,
-            user_name: None,
-            client: None,
-            last_activity_date: None,
-            last_playback_check_in: None,
-            device_name: None,
-            device_type: None,
-            now_playing_item: None,
-            full_now_playing_item: None,
-            now_viewing_item: None,
-            device_id: None,
-            application_version: None,
-            transcoding_info: None,
-            is_active: None,
-            supports_media_control: None,
-            supports_remote_control: None,
-            now_playing_queue: None,
-            has_custom_device_name: None,
-            playlist_item_id: None,
-            server_id: None,
-            user_primary_image_tag: None,
-            supported_commands: None,
-        }
-    }
 }

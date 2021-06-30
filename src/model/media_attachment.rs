@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 /// A media attachment
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct MediaAttachment {
     /// The codec.
     #[serde(rename = "Codec", skip_serializing_if = "Option::is_none")]
@@ -24,19 +24,4 @@ pub struct MediaAttachment {
     /// The delivery URL.
     #[serde(rename = "DeliveryUrl", skip_serializing_if = "Option::is_none")]
     pub delivery_url: Option<String>,
-}
-
-impl MediaAttachment {
-    /// Class MediaAttachment.
-    pub fn new() -> MediaAttachment {
-        MediaAttachment {
-            codec: None,
-            codec_tag: None,
-            comment: None,
-            index: None,
-            file_name: None,
-            mime_type: None,
-            delivery_url: None,
-        }
-    }
 }

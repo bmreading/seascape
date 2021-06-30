@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 /// A DLNA DeviceProfile.
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct DeviceProfile {
     /// The Name.
     #[serde(rename = "Name", skip_serializing_if = "Option::is_none")]
@@ -162,51 +162,4 @@ pub struct DeviceProfile {
     /// The subtitle profiles.
     #[serde(rename = "SubtitleProfiles", skip_serializing_if = "Option::is_none")]
     pub subtitle_profiles: Option<Vec<crate::model::SubtitleProfile>>,
-}
-
-impl DeviceProfile {
-    /// Defines the MediaBrowser.Model.Dlna.DeviceProfile.
-    pub fn new() -> DeviceProfile {
-        DeviceProfile {
-            name: None,
-            id: None,
-            identification: None,
-            friendly_name: None,
-            manufacturer: None,
-            manufacturer_url: None,
-            model_name: None,
-            model_description: None,
-            model_number: None,
-            model_url: None,
-            serial_number: None,
-            enable_album_art_in_didl: None,
-            enable_single_album_art_limit: None,
-            enable_single_subtitle_limit: None,
-            supported_media_types: None,
-            user_id: None,
-            album_art_pn: None,
-            max_album_art_width: None,
-            max_album_art_height: None,
-            max_icon_width: None,
-            max_icon_height: None,
-            max_streaming_bitrate: None,
-            max_static_bitrate: None,
-            music_streaming_transcoding_bitrate: None,
-            max_static_music_bitrate: None,
-            sony_aggregation_flags: None,
-            protocol_info: None,
-            timeline_offset_seconds: None,
-            requires_plain_video_items: None,
-            requires_plain_folders: None,
-            enable_ms_media_receiver_registrar: None,
-            ignore_transcode_byte_range_requests: None,
-            xml_root_attributes: None,
-            direct_play_profiles: None,
-            transcoding_profiles: None,
-            container_profiles: None,
-            codec_profiles: None,
-            response_profiles: None,
-            subtitle_profiles: None,
-        }
-    }
 }

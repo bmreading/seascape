@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct MediaSourceInfo {
     #[serde(rename = "Protocol", skip_serializing_if = "Option::is_none")]
     pub protocol: Option<Box<crate::model::MediaProtocol>>,
@@ -111,53 +111,4 @@ pub struct MediaSourceInfo {
         skip_serializing_if = "Option::is_none"
     )]
     pub default_subtitle_stream_index: Option<i32>,
-}
-
-impl MediaSourceInfo {
-    pub fn new() -> MediaSourceInfo {
-        MediaSourceInfo {
-            protocol: None,
-            id: None,
-            path: None,
-            encoder_path: None,
-            encoder_protocol: None,
-            _type: None,
-            container: None,
-            size: None,
-            name: None,
-            is_remote: None,
-            e_tag: None,
-            run_time_ticks: None,
-            read_at_native_framerate: None,
-            ignore_dts: None,
-            ignore_index: None,
-            gen_pts_input: None,
-            supports_transcoding: None,
-            supports_direct_stream: None,
-            supports_direct_play: None,
-            is_infinite_stream: None,
-            requires_opening: None,
-            open_token: None,
-            requires_closing: None,
-            live_stream_id: None,
-            buffer_ms: None,
-            requires_looping: None,
-            supports_probing: None,
-            video_type: None,
-            iso_type: None,
-            video3_d_format: None,
-            media_streams: None,
-            media_attachments: None,
-            formats: None,
-            bitrate: None,
-            timestamp: None,
-            required_http_headers: None,
-            transcoding_url: None,
-            transcoding_sub_protocol: None,
-            transcoding_container: None,
-            analyze_duration_ms: None,
-            default_audio_stream_index: None,
-            default_subtitle_stream_index: None,
-        }
-    }
 }

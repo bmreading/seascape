@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// Represents blurhashes for image tags.
 /// Each field maps an image tag to blurhash value.
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct BaseItemDtoImageBlurHashes {
     #[serde(rename = "Primary", skip_serializing_if = "Option::is_none")]
     pub primary: Option<::std::collections::HashMap<String, String>>,
@@ -31,25 +31,4 @@ pub struct BaseItemDtoImageBlurHashes {
     pub box_rear: Option<::std::collections::HashMap<String, String>>,
     #[serde(rename = "Profile", skip_serializing_if = "Option::is_none")]
     pub profile: Option<::std::collections::HashMap<String, String>>,
-}
-
-impl BaseItemDtoImageBlurHashes {
-    /// Returns a new of instance of image blurhashes for specific image tags.
-    pub fn new() -> BaseItemDtoImageBlurHashes {
-        BaseItemDtoImageBlurHashes {
-            primary: None,
-            art: None,
-            backdrop: None,
-            banner: None,
-            logo: None,
-            thumb: None,
-            disc: None,
-            _box: None,
-            screenshot: None,
-            menu: None,
-            chapter: None,
-            box_rear: None,
-            profile: None,
-        }
-    }
 }

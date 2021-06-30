@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct TranscodingInfo {
     #[serde(rename = "AudioCodec", skip_serializing_if = "Option::is_none")]
     pub audio_codec: Option<String>,
@@ -29,23 +29,4 @@ pub struct TranscodingInfo {
     pub audio_channels: Option<i32>,
     #[serde(rename = "TranscodeReasons", skip_serializing_if = "Option::is_none")]
     pub transcode_reasons: Option<Vec<crate::model::TranscodeReason>>,
-}
-
-impl TranscodingInfo {
-    pub fn new() -> TranscodingInfo {
-        TranscodingInfo {
-            audio_codec: None,
-            video_codec: None,
-            container: None,
-            is_video_direct: None,
-            is_audio_direct: None,
-            bitrate: None,
-            framerate: None,
-            completion_percentage: None,
-            width: None,
-            height: None,
-            audio_channels: None,
-            transcode_reasons: None,
-        }
-    }
 }

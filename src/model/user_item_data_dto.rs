@@ -1,8 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 /// Data regarding a user item.
-
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default,PartialEq, Serialize, Deserialize)]
 pub struct UserItemDataDto {
     /// The rating.
     #[serde(rename = "Rating", skip_serializing_if = "Option::is_none")]
@@ -40,23 +39,4 @@ pub struct UserItemDataDto {
     /// The item identifier.
     #[serde(rename = "ItemId", skip_serializing_if = "Option::is_none")]
     pub item_id: Option<String>,
-}
-
-impl UserItemDataDto {
-    /// Class UserItemDataDto.
-    pub fn new() -> UserItemDataDto {
-        UserItemDataDto {
-            rating: None,
-            played_percentage: None,
-            unplayed_item_count: None,
-            playback_position_ticks: None,
-            play_count: None,
-            is_favorite: None,
-            likes: None,
-            last_played_date: None,
-            played: None,
-            key: None,
-            item_id: None,
-        }
-    }
 }

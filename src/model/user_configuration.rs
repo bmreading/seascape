@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct UserConfiguration {
     /// The audio language preference.
     #[serde(
@@ -66,27 +66,4 @@ pub struct UserConfiguration {
         skip_serializing_if = "Option::is_none"
     )]
     pub enable_next_episode_auto_play: Option<bool>,
-}
-
-impl UserConfiguration {
-    /// Class UserConfiguration.
-    pub fn new() -> UserConfiguration {
-        UserConfiguration {
-            audio_language_preference: None,
-            play_default_audio_track: None,
-            subtitle_language_preference: None,
-            display_missing_episodes: None,
-            grouped_folders: None,
-            subtitle_mode: None,
-            display_collections_view: None,
-            enable_local_password: None,
-            ordered_views: None,
-            latest_items_excludes: None,
-            my_media_excludes: None,
-            hide_played_in_latest: None,
-            remember_audio_selections: None,
-            remember_subtitle_selections: None,
-            enable_next_episode_auto_play: None,
-        }
-    }
 }

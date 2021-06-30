@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct SubtitleProfile {
     #[serde(rename = "Format", skip_serializing_if = "Option::is_none")]
     pub format: Option<String>,
@@ -12,16 +12,4 @@ pub struct SubtitleProfile {
     pub language: Option<String>,
     #[serde(rename = "Container", skip_serializing_if = "Option::is_none")]
     pub container: Option<String>,
-}
-
-impl SubtitleProfile {
-    pub fn new() -> SubtitleProfile {
-        SubtitleProfile {
-            format: None,
-            method: None,
-            didl_mode: None,
-            language: None,
-            container: None,
-        }
-    }
 }

@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct DeviceIdentification {
     /// The friendly name.
     #[serde(rename = "FriendlyName", skip_serializing_if = "Option::is_none")]
@@ -29,20 +29,4 @@ pub struct DeviceIdentification {
     /// The headers.
     #[serde(rename = "Headers", skip_serializing_if = "Option::is_none")]
     pub headers: Option<Vec<crate::model::HttpHeaderInfo>>,
-}
-
-impl DeviceIdentification {
-    pub fn new() -> DeviceIdentification {
-        DeviceIdentification {
-            friendly_name: None,
-            model_number: None,
-            serial_number: None,
-            model_name: None,
-            model_description: None,
-            model_url: None,
-            manufacturer: None,
-            manufacturer_url: None,
-            headers: None,
-        }
-    }
 }

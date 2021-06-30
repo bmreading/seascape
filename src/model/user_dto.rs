@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct UserDto {
     /// The name.
     #[serde(rename = "Name", skip_serializing_if = "Option::is_none")]
@@ -53,26 +53,4 @@ pub struct UserDto {
         skip_serializing_if = "Option::is_none"
     )]
     pub primary_image_aspect_ratio: Option<f64>,
-}
-
-impl UserDto {
-    /// Class UserDto.
-    pub fn new() -> UserDto {
-        UserDto {
-            name: None,
-            server_id: None,
-            server_name: None,
-            id: None,
-            primary_image_tag: None,
-            has_password: None,
-            has_configured_password: None,
-            has_configured_easy_password: None,
-            enable_auto_login: None,
-            last_login_date: None,
-            last_activity_date: None,
-            configuration: None,
-            policy: None,
-            primary_image_aspect_ratio: None,
-        }
-    }
 }

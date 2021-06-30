@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 /// A media stream
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct MediaStream {
     /// The codec.
     #[serde(rename = "Codec", skip_serializing_if = "Option::is_none")]
@@ -143,59 +143,4 @@ pub struct MediaStream {
     /// Gets a value indicating whether this instance is anamorphic.
     #[serde(rename = "IsAnamorphic", skip_serializing_if = "Option::is_none")]
     pub is_anamorphic: Option<bool>,
-}
-
-impl MediaStream {
-    /// Class MediaStream.
-    pub fn new() -> MediaStream {
-        MediaStream {
-            codec: None,
-            codec_tag: None,
-            language: None,
-            color_range: None,
-            color_space: None,
-            color_transfer: None,
-            color_primaries: None,
-            comment: None,
-            time_base: None,
-            codec_time_base: None,
-            title: None,
-            video_range: None,
-            localized_undefined: None,
-            localized_default: None,
-            localized_forced: None,
-            display_title: None,
-            nal_length_size: None,
-            is_interlaced: None,
-            is_avc: None,
-            channel_layout: None,
-            bit_rate: None,
-            bit_depth: None,
-            ref_frames: None,
-            packet_length: None,
-            channels: None,
-            sample_rate: None,
-            is_default: None,
-            is_forced: None,
-            height: None,
-            width: None,
-            average_frame_rate: None,
-            real_frame_rate: None,
-            profile: None,
-            _type: None,
-            aspect_ratio: None,
-            index: None,
-            score: None,
-            is_external: None,
-            delivery_method: None,
-            delivery_url: None,
-            is_external_url: None,
-            is_text_subtitle_stream: None,
-            supports_external_stream: None,
-            path: None,
-            pixel_format: None,
-            level: None,
-            is_anamorphic: None,
-        }
-    }
 }

@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct TranscodingProfile {
     #[serde(rename = "Container", skip_serializing_if = "Option::is_none")]
     pub container: Option<String>,
@@ -44,26 +44,4 @@ pub struct TranscodingProfile {
         skip_serializing_if = "Option::is_none"
     )]
     pub break_on_non_key_frames: Option<bool>,
-}
-
-impl TranscodingProfile {
-    pub fn new() -> TranscodingProfile {
-        TranscodingProfile {
-            container: None,
-            _type: None,
-            video_codec: None,
-            audio_codec: None,
-            protocol: None,
-            estimate_content_length: None,
-            enable_mpegts_m2_ts_mode: None,
-            transcode_seek_info: None,
-            copy_timestamps: None,
-            context: None,
-            enable_subtitles_in_manifest: None,
-            max_audio_channels: None,
-            min_segments: None,
-            segment_length: None,
-            break_on_non_key_frames: None,
-        }
-    }
 }

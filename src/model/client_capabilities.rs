@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct ClientCapabilities {
     #[serde(rename = "PlayableMediaTypes", skip_serializing_if = "Option::is_none")]
     pub playable_media_types: Option<Vec<String>>,
@@ -32,21 +32,4 @@ pub struct ClientCapabilities {
     pub app_store_url: Option<String>,
     #[serde(rename = "IconUrl", skip_serializing_if = "Option::is_none")]
     pub icon_url: Option<String>,
-}
-
-impl ClientCapabilities {
-    pub fn new() -> ClientCapabilities {
-        ClientCapabilities {
-            playable_media_types: None,
-            supported_commands: None,
-            supports_media_control: None,
-            supports_content_uploading: None,
-            message_callback_url: None,
-            supports_persistent_identifier: None,
-            supports_sync: None,
-            device_profile: None,
-            app_store_url: None,
-            icon_url: None,
-        }
-    }
 }

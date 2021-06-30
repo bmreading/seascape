@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct PlayerStateInfo {
     /// The now playing position ticks.
     #[serde(rename = "PositionTicks", skip_serializing_if = "Option::is_none")]
@@ -35,21 +35,4 @@ pub struct PlayerStateInfo {
     /// The repeat mode.
     #[serde(rename = "RepeatMode", skip_serializing_if = "Option::is_none")]
     pub repeat_mode: Option<Box<crate::model::RepeatMode>>,
-}
-
-impl PlayerStateInfo {
-    pub fn new() -> PlayerStateInfo {
-        PlayerStateInfo {
-            position_ticks: None,
-            can_seek: None,
-            is_paused: None,
-            is_muted: None,
-            volume_level: None,
-            audio_stream_index: None,
-            subtitle_stream_index: None,
-            media_source_id: None,
-            play_method: None,
-            repeat_mode: None,
-        }
-    }
 }

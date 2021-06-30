@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 pub struct UserPolicy {
     /// A value indicating whether this instance is administrator.
     #[serde(rename = "IsAdministrator", skip_serializing_if = "Option::is_none")]
@@ -149,50 +149,4 @@ pub struct UserPolicy {
     /// Enum SyncPlayUserAccessType.
     #[serde(rename = "SyncPlayAccess", skip_serializing_if = "Option::is_none")]
     pub sync_play_access: Option<Box<crate::model::SyncPlayUserAccessType>>,
-}
-
-impl UserPolicy {
-    pub fn new() -> UserPolicy {
-        UserPolicy {
-            is_administrator: None,
-            is_hidden: None,
-            is_disabled: None,
-            max_parental_rating: None,
-            blocked_tags: None,
-            enable_user_preference_access: None,
-            access_schedules: None,
-            block_unrated_items: None,
-            enable_remote_control_of_other_users: None,
-            enable_shared_device_control: None,
-            enable_remote_access: None,
-            enable_live_tv_management: None,
-            enable_live_tv_access: None,
-            enable_media_playback: None,
-            enable_audio_playback_transcoding: None,
-            enable_video_playback_transcoding: None,
-            enable_playback_remuxing: None,
-            force_remote_source_transcoding: None,
-            enable_content_deletion: None,
-            enable_content_deletion_from_folders: None,
-            enable_content_downloading: None,
-            enable_sync_transcoding: None,
-            enable_media_conversion: None,
-            enabled_devices: None,
-            enable_all_devices: None,
-            enabled_channels: None,
-            enable_all_channels: None,
-            enabled_folders: None,
-            enable_all_folders: None,
-            invalid_login_attempt_count: None,
-            login_attempts_before_lockout: None,
-            max_active_sessions: None,
-            enable_public_sharing: None,
-            blocked_media_folders: None,
-            blocked_channels: None,
-            remote_client_bitrate_limit: None,
-            authentication_provider_id: None,
-            password_reset_provider_id: None,
-            sync_play_access: None,
-        }
-    }
 }
