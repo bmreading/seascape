@@ -2,31 +2,31 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DeviceIdentification {
-    /// Gets or sets the name of the friendly.
+    /// The friendly name.
     #[serde(rename = "FriendlyName", skip_serializing_if = "Option::is_none")]
     pub friendly_name: Option<String>,
-    /// Gets or sets the model number.
+    /// The model number.
     #[serde(rename = "ModelNumber", skip_serializing_if = "Option::is_none")]
     pub model_number: Option<String>,
-    /// Gets or sets the serial number.
+    /// The serial number.
     #[serde(rename = "SerialNumber", skip_serializing_if = "Option::is_none")]
     pub serial_number: Option<String>,
-    /// Gets or sets the name of the model.
+    /// The name of the model.
     #[serde(rename = "ModelName", skip_serializing_if = "Option::is_none")]
     pub model_name: Option<String>,
-    /// Gets or sets the model description.
+    /// The model description.
     #[serde(rename = "ModelDescription", skip_serializing_if = "Option::is_none")]
     pub model_description: Option<String>,
-    /// Gets or sets the model URL.
+    /// The model URL.
     #[serde(rename = "ModelUrl", skip_serializing_if = "Option::is_none")]
     pub model_url: Option<String>,
-    /// Gets or sets the manufacturer.
+    /// The manufacturer.
     #[serde(rename = "Manufacturer", skip_serializing_if = "Option::is_none")]
     pub manufacturer: Option<String>,
-    /// Gets or sets the manufacturer URL.
+    /// The manufacturer URL.
     #[serde(rename = "ManufacturerUrl", skip_serializing_if = "Option::is_none")]
     pub manufacturer_url: Option<String>,
-    /// Gets or sets the headers.
+    /// The headers.
     #[serde(rename = "Headers", skip_serializing_if = "Option::is_none")]
     pub headers: Option<Vec<crate::model::HttpHeaderInfo>>,
 }
