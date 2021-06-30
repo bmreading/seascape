@@ -29,7 +29,7 @@
 //!     .unwrap();
 //!
 //! let artist = jellyfin.artist("Iron Maiden", None).await.unwrap();
-//! println!("Album count is {}.", artist.album_count.unwrap()); 
+//! println!("Album count is {}.", artist.album_count.unwrap());
 //! ```
 
 #[macro_use]
