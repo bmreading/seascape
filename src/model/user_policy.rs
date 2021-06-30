@@ -1,16 +1,17 @@
 use serde::{Deserialize, Serialize};
+
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UserPolicy {
-    /// Gets or sets a value indicating whether this instance is administrator.
+    /// A value indicating whether this instance is administrator.
     #[serde(rename = "IsAdministrator", skip_serializing_if = "Option::is_none")]
     pub is_administrator: Option<bool>,
-    /// Gets or sets a value indicating whether this instance is hidden.
+    /// A value indicating whether this instance is hidden.
     #[serde(rename = "IsHidden", skip_serializing_if = "Option::is_none")]
     pub is_hidden: Option<bool>,
-    /// Gets or sets a value indicating whether this instance is disabled.
+    /// A value indicating whether this instance is disabled.
     #[serde(rename = "IsDisabled", skip_serializing_if = "Option::is_none")]
     pub is_disabled: Option<bool>,
-    /// Gets or sets the max parental rating.
+    /// The max parental rating.
     #[serde(rename = "MaxParentalRating", skip_serializing_if = "Option::is_none")]
     pub max_parental_rating: Option<i32>,
     #[serde(rename = "BlockedTags", skip_serializing_if = "Option::is_none")]
@@ -83,7 +84,7 @@ pub struct UserPolicy {
         skip_serializing_if = "Option::is_none"
     )]
     pub enable_content_downloading: Option<bool>,
-    /// Gets or sets a value indicating whether [enable synchronize].
+    /// A value indicating whether [enable synchronize].
     #[serde(
         rename = "EnableSyncTranscoding",
         skip_serializing_if = "Option::is_none"
