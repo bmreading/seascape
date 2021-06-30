@@ -36,11 +36,11 @@ pub enum HttpClientError {
 impl HttpClientError {
     fn from_status(code: u16) -> Self {
         if code == 401 {
-            return Self::Unauthorized;
+            Self::Unauthorized
         } else if code == 403 {
-            return Self::Forbidden;
+            Self::Forbidden
         } else {
-            return Self::Unknown;
+            Self::Unknown
         }
     }
 }
