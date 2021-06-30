@@ -9,6 +9,9 @@ pub enum SeascapeError {
     #[error("invalid response from jellyfin: {0}")]
     Serde(#[from] serde_json::Error),
 
+    #[error("attempted retrieval of empty token")]
+    EmptyToken(),
+
     #[error("http error: {0}")]
     Http(#[from] http::Error),
 
