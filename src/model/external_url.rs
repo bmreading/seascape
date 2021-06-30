@@ -2,10 +2,10 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ExternalUrl {
-    /// Gets or sets the name.
+    /// The name.
     #[serde(rename = "Name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
-    /// Gets or sets the type of the item.
+    /// The type of the item.
     #[serde(rename = "Url", skip_serializing_if = "Option::is_none")]
     pub url: Option<String>,
 }
