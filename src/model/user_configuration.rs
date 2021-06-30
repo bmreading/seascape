@@ -2,19 +2,19 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UserConfiguration {
-    /// Gets or sets the audio language preference.
+    /// The audio language preference.
     #[serde(
         rename = "AudioLanguagePreference",
         skip_serializing_if = "Option::is_none"
     )]
     pub audio_language_preference: Option<String>,
-    /// Gets or sets a value indicating whether [play default audio track].
+    /// A value indicating whether [play default audio track].
     #[serde(
         rename = "PlayDefaultAudioTrack",
         skip_serializing_if = "Option::is_none"
     )]
     pub play_default_audio_track: Option<bool>,
-    /// Gets or sets the subtitle language preference.
+    /// The subtitle language preference.
     #[serde(
         rename = "SubtitleLanguagePreference",
         skip_serializing_if = "Option::is_none"
