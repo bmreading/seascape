@@ -1,27 +1,27 @@
 use serde::{Deserialize, Serialize};
-/// MediaAttachment : Class MediaAttachment.
 
+/// A media attachment
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MediaAttachment {
-    /// Gets or sets the codec.
+    /// The codec.
     #[serde(rename = "Codec", skip_serializing_if = "Option::is_none")]
     pub codec: Option<String>,
-    /// Gets or sets the codec tag.
+    /// The codec tag.
     #[serde(rename = "CodecTag", skip_serializing_if = "Option::is_none")]
     pub codec_tag: Option<String>,
-    /// Gets or sets the comment.
+    /// The comment.
     #[serde(rename = "Comment", skip_serializing_if = "Option::is_none")]
     pub comment: Option<String>,
-    /// Gets or sets the index.
+    /// The index.
     #[serde(rename = "Index", skip_serializing_if = "Option::is_none")]
     pub index: Option<i32>,
-    /// Gets or sets the filename.
+    /// The filename.
     #[serde(rename = "FileName", skip_serializing_if = "Option::is_none")]
     pub file_name: Option<String>,
-    /// Gets or sets the MIME type.
+    /// The MIME type.
     #[serde(rename = "MimeType", skip_serializing_if = "Option::is_none")]
     pub mime_type: Option<String>,
-    /// Gets or sets the delivery URL.
+    /// The delivery URL.
     #[serde(rename = "DeliveryUrl", skip_serializing_if = "Option::is_none")]
     pub delivery_url: Option<String>,
 }
