@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
-/// SessionInfo : Class SessionInfo.
 
+/// Information about a session
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SessionInfo {
     #[serde(rename = "PlayState", skip_serializing_if = "Option::is_none")]
@@ -9,52 +9,52 @@ pub struct SessionInfo {
     pub additional_users: Option<Vec<crate::model::SessionUserInfo>>,
     #[serde(rename = "Capabilities", skip_serializing_if = "Option::is_none")]
     pub capabilities: Option<Box<crate::model::ClientCapabilities>>,
-    /// Gets or sets the remote end point.
+    /// The remote end point.
     #[serde(rename = "RemoteEndPoint", skip_serializing_if = "Option::is_none")]
     pub remote_end_point: Option<String>,
-    /// Gets or sets the playable media types.
+    /// The playable media types.
     #[serde(rename = "PlayableMediaTypes", skip_serializing_if = "Option::is_none")]
     pub playable_media_types: Option<Vec<String>>,
-    /// Gets or sets the id.
+    /// The id.
     #[serde(rename = "Id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
-    /// Gets or sets the user id.
+    /// The user id.
     #[serde(rename = "UserId", skip_serializing_if = "Option::is_none")]
     pub user_id: Option<String>,
-    /// Gets or sets the username.
+    /// The username.
     #[serde(rename = "UserName", skip_serializing_if = "Option::is_none")]
     pub user_name: Option<String>,
-    /// Gets or sets the type of the client.
+    /// The type of the client.
     #[serde(rename = "Client", skip_serializing_if = "Option::is_none")]
     pub client: Option<String>,
-    /// Gets or sets the last activity date.
+    /// The last activity date.
     #[serde(rename = "LastActivityDate", skip_serializing_if = "Option::is_none")]
     pub last_activity_date: Option<String>,
-    /// Gets or sets the last playback check in.
+    /// The last playback check in.
     #[serde(
         rename = "LastPlaybackCheckIn",
         skip_serializing_if = "Option::is_none"
     )]
     pub last_playback_check_in: Option<String>,
-    /// Gets or sets the name of the device.
+    /// The name of the device.
     #[serde(rename = "DeviceName", skip_serializing_if = "Option::is_none")]
     pub device_name: Option<String>,
-    /// Gets or sets the type of the device.
+    /// The type of the device.
     #[serde(rename = "DeviceType", skip_serializing_if = "Option::is_none")]
     pub device_type: Option<String>,
-    /// Gets or sets the now playing item.
+    /// The now playing item.
     #[serde(rename = "NowPlayingItem", skip_serializing_if = "Option::is_none")]
     pub now_playing_item: Option<Box<crate::model::BaseItemDto>>,
-    /// Class BaseItem.
+    /// BaseItem struct
     #[serde(rename = "FullNowPlayingItem", skip_serializing_if = "Option::is_none")]
     pub full_now_playing_item: Option<Box<crate::model::BaseItem>>,
-    /// This is strictly used as a data transfer object from the api layer.  This holds information about a BaseItem in a format that is convenient for the client.
+    /// This holds information about a BaseItem in a format that is convenient for the server API.
     #[serde(rename = "NowViewingItem", skip_serializing_if = "Option::is_none")]
     pub now_viewing_item: Option<Box<crate::model::BaseItemDto>>,
-    /// Gets or sets the device id.
+    /// The device id.
     #[serde(rename = "DeviceId", skip_serializing_if = "Option::is_none")]
     pub device_id: Option<String>,
-    /// Gets or sets the application version.
+    /// The application version.
     #[serde(rename = "ApplicationVersion", skip_serializing_if = "Option::is_none")]
     pub application_version: Option<String>,
     #[serde(rename = "TranscodingInfo", skip_serializing_if = "Option::is_none")]
@@ -88,7 +88,7 @@ pub struct SessionInfo {
         skip_serializing_if = "Option::is_none"
     )]
     pub user_primary_image_tag: Option<String>,
-    /// Gets or sets the supported commands.
+    /// The supported commands.
     #[serde(rename = "SupportedCommands", skip_serializing_if = "Option::is_none")]
     pub supported_commands: Option<Vec<crate::model::GeneralCommandType>>,
 }
