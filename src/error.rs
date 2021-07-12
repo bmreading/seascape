@@ -24,6 +24,9 @@ pub enum SeascapeError {
     #[error("invalid client configuration: {0}")]
     InvalidClient(String),
 
+    #[error("unexpected data content type received")]
+    InvalidContent,
+
     #[error("unknown jellyfin error")]
     Unknown,
 }
