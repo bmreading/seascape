@@ -12,6 +12,7 @@ edition = "2018"
 
 [dependencies]
 async-trait = "0.1.50"
+bytes = "1.0.1"
 derive_builder = "0.10.2"
 env_logger = "0.8.4"
 http = "0.2.4"
