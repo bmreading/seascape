@@ -1,6 +1,9 @@
 //! API key operations
+use serde_json::from_str;
+
 use crate::auth::AuthHeader;
-use crate::http::{HttpClient, QueryParamMap, RequestBuilder};
+use crate::http::{DataContentType, HttpClient, QueryParamMap, RequestBuilder};
+use crate::error::SeascapeError::InvalidContent;
 use crate::model::BaseItemDto;
 
 use super::{ClientResult, ItemResponse, Jellyfin};
@@ -20,9 +23,11 @@ impl Jellyfin {
             .body(None)?;
 
         let response = self.http_client_type.send(&request, None).await?;
-        let response_body = response.body();
-
-        Ok(serde_json::from_str(response_body)?)
+        
+        match response.body() {
+            DataContentType::TextContent(c) => Ok(from_str(c)?),
+            DataContentType::BinaryContent(_) => Err(InvalidContent)
+        }
     }
 
     /// Adds an API key
@@ -42,9 +47,11 @@ impl Jellyfin {
             .body(None)?;
 
         let response = self.http_client_type.send(&request, Some(&params)).await?;
-        let response_body = response.body();
-
-        Ok(serde_json::from_str(response_body)?)
+        
+        match response.body() {
+            DataContentType::TextContent(c) => Ok(from_str(c)?),
+            DataContentType::BinaryContent(_) => Err(InvalidContent)
+        }
     }
 
     /// Removes an API key
@@ -64,8 +71,10 @@ impl Jellyfin {
             .body(None)?;
 
         let response = self.http_client_type.send(&request, Some(&params)).await?;
-        let response_body = response.body();
 
-        Ok(serde_json::from_str(response_body)?)
+        match response.body() {
+            DataContentType::TextContent(c) => Ok(from_str(c)?),
+            DataContentType::BinaryContent(_) => Err(InvalidContent)
+        }
     }
 }

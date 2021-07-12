@@ -1,11 +1,13 @@
 //! Artist operations
 use crate::auth::AuthHeader;
-use crate::http::HttpClient;
+use crate::error::SeascapeError::InvalidContent;
+use crate::http::{DataContentType, HttpClient};
 use crate::model::BaseItemDto;
 
 use derive_builder::Builder;
 use itertools::Itertools;
 use serde::{Deserialize, Serialize};
+use serde_json::from_str;
 use urlencoding::encode;
 
 use super::{ClientResult, ItemResponse, Jellyfin};
@@ -102,8 +104,11 @@ impl Jellyfin {
             .body(None)?;
 
         let response = self.http_client_type.send(&request, Some(&params)).await?;
-        let artists = serde_json::from_str(response.body())?;
-        Ok(artists)
+
+        match response.body() {
+            DataContentType::TextContent(c) => Ok(from_str(c)?),
+            DataContentType::BinaryContent(_) => Err(InvalidContent)
+        }
     }
 
     /// Retrieves a single artist by name
@@ -124,8 +129,11 @@ impl Jellyfin {
             .body(None)?;
 
         let response = self.http_client_type.send(&request, Some(&params)).await?;
-        let artist = serde_json::from_str(response.body())?;
-        Ok(artist)
+
+        match response.body() {
+            DataContentType::TextContent(c) => Ok(from_str(c)?),
+            DataContentType::BinaryContent(_) => Err(InvalidContent)
+        }
     }
 }
 

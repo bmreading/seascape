@@ -1,8 +1,10 @@
 //! Activity log operations
 use http::header;
+use serde_json::from_str;
 
 use crate::auth::AuthHeader;
-use crate::http::HttpClient;
+use crate::error::SeascapeError::InvalidContent;
+use crate::http::{DataContentType, HttpClient};
 use crate::model::ActivityLogEntry;
 
 use super::{ClientResult, ItemResponse, Jellyfin};
@@ -40,7 +42,10 @@ impl Jellyfin {
         );
 
         let response = self.http_client_type.send(&request, Some(&params)).await?;
-        let activity_log_entries_result = serde_json::from_str(response.body())?;
-        Ok(activity_log_entries_result)
+
+        match response.body() {
+            DataContentType::TextContent(c) => Ok(from_str(c)?),
+            DataContentType::BinaryContent(_) => Err(InvalidContent)
+        }
     }
 }
