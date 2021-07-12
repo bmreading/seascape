@@ -1,16 +1,17 @@
 //! HTTP clients and related types
 
 use async_trait::async_trait;
+use bytes::Bytes;
 use log::info;
 use std::collections::HashMap;
 use thiserror::Error;
 
-/// An HTTP Request type with a streaming body.
+/// An HTTP Request type
 pub type Request = http::Request<Option<String>>;
 pub type RequestBuilder = http::request::Builder;
 
-/// An HTTP Response type with a streaming body.
-pub type Response = http::Response<String>;
+/// An HTTP Response type
+pub type Response = http::Response<DataContentType>;
 
 /// A map of parameters
 pub type QueryParamMap<'a> = HashMap<&'a str, &'a str>;
@@ -115,21 +116,55 @@ impl AsyncClient {
 
 #[async_trait]
 pub trait IntoResponseExt<T> {
-    async fn into(self) -> http::Response<String>;
+    async fn into(self) -> http::Response<DataContentType>;
 }
 
 #[async_trait]
 impl<T> IntoResponseExt<T> for reqwest::Response {
-    async fn into(self) -> http::Response<String> {
-        let mut http_response_builder: http::response::Builder = http::response::Builder::new();
+    // From reqwest::Response to http::Response<DataContentType>
+    async fn into(self) -> http::Response<DataContentType> {
+        let mut http_response_builder = http::response::Builder::new().status(self.status());
 
         for header in self.headers() {
             http_response_builder = http_response_builder.header(header.0, header.1);
         }
 
-        http_response_builder
-            .status(self.status())
-            .body(self.text().await.unwrap())
-            .unwrap()
+        const TEXT_DATA_CONTENT_TYPES: [&str; 2] = [
+            "application/json",
+            "application/xhtml",
+        ];
+
+        let mut is_text_data = false;
+        for header in self.headers() {
+            http_response_builder = http_response_builder.header(header.0, header.1);
+
+            // Determine if binary or text data based-on Content-Type header
+            if (header.0.as_str() == "content-type" && header.1.to_str().unwrap().contains("text"))
+                || (header.0.as_str() == "content-type"
+                    && TEXT_DATA_CONTENT_TYPES
+                        .iter()
+                        .any(|v| header.1.to_str().unwrap().contains(v)))
+            {
+                is_text_data = true;
+            }
+        }
+
+        if is_text_data {
+            http_response_builder
+                .body(DataContentType::TextDataContent(self.text().await.unwrap()))
+                .unwrap()
+        } else {
+            http_response_builder
+                .body(DataContentType::BinaryDataContent(
+                    self.bytes().await.unwrap(),
+                ))
+                .unwrap()
+        }
     }
+}
+
+#[derive(Debug, Clone)]
+pub enum DataContentType {
+    TextDataContent(String),
+    BinaryDataContent(Bytes),
 }
