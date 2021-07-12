@@ -13,7 +13,7 @@ use std::convert::TryFrom;
 
 use crate::auth::{AuthHeader, AuthHeaderType, UserAuthHeader, UserAuthInfo};
 use crate::error::SeascapeError;
-use crate::http::{AsyncClient, HttpClient, HttpClientType};
+use crate::http::{AsyncClient, DataContentType, HttpClient, HttpClientType};
 use crate::model::{AuthenticationResult, BaseItemDtoQueryResult};
 
 /// A type alias for a Result of generic type to be returned from a client instance
@@ -56,7 +56,6 @@ impl Jellyfin {
     ) -> ClientResult<Jellyfin> {
         let url = format!("{}{}", self.base_url, "/users/authenticatebyname");
 
-        // TO DO: Look into seeing if this is better as a plain string or other type
         let body = json!({
             "username": username,
             "pw": password
@@ -74,7 +73,10 @@ impl Jellyfin {
 
         let response = self.http_client_type.send(&request, None).await?;
 
-        let auth_result: AuthenticationResult = serde_json::from_str(response.body())?;
+        let mut auth_result: AuthenticationResult = AuthenticationResult::default();
+        if let DataContentType::TextContent(content) = response.body() {
+            auth_result = serde_json::from_str(content)?;
+        }
 
         let user_auth_info_string = self
             .auth_header_type
