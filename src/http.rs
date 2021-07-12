@@ -129,10 +129,7 @@ impl<T> IntoResponseExt<T> for reqwest::Response {
             http_response_builder = http_response_builder.header(header.0, header.1);
         }
 
-        const TEXT_DATA_CONTENT_TYPES: [&str; 2] = [
-            "application/json",
-            "application/xhtml",
-        ];
+        const TEXT_DATA_CONTENT_TYPES: [&str; 2] = ["application/json", "application/xhtml"];
 
         let mut is_text_data = false;
         for header in self.headers() {
@@ -151,11 +148,11 @@ impl<T> IntoResponseExt<T> for reqwest::Response {
 
         if is_text_data {
             http_response_builder
-                .body(DataContentType::TextDataContent(self.text().await.unwrap()))
+                .body(DataContentType::TextContent(self.text().await.unwrap()))
                 .unwrap()
         } else {
             http_response_builder
-                .body(DataContentType::BinaryDataContent(
+                .body(DataContentType::BinaryContent(
                     self.bytes().await.unwrap(),
                 ))
                 .unwrap()
@@ -165,6 +162,6 @@ impl<T> IntoResponseExt<T> for reqwest::Response {
 
 #[derive(Debug, Clone)]
 pub enum DataContentType {
-    TextDataContent(String),
-    BinaryDataContent(Bytes),
+    TextContent(String),
+    BinaryContent(Bytes),
 }
