@@ -152,9 +152,7 @@ impl<T> IntoResponseExt<T> for reqwest::Response {
                 .unwrap()
         } else {
             http_response_builder
-                .body(DataContentType::BinaryContent(
-                    self.bytes().await.unwrap(),
-                ))
+                .body(DataContentType::BinaryContent(self.bytes().await.unwrap()))
                 .unwrap()
         }
     }

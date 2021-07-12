@@ -107,7 +107,7 @@ impl Jellyfin {
 
         match response.body() {
             DataContentType::TextContent(c) => Ok(from_str(c)?),
-            DataContentType::BinaryContent(_) => Err(InvalidContent)
+            DataContentType::BinaryContent(_) => Err(InvalidContent),
         }
     }
 
@@ -132,7 +132,7 @@ impl Jellyfin {
 
         match response.body() {
             DataContentType::TextContent(c) => Ok(from_str(c)?),
-            DataContentType::BinaryContent(_) => Err(InvalidContent)
+            DataContentType::BinaryContent(_) => Err(InvalidContent),
         }
     }
 }
