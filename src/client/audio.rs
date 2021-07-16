@@ -4,9 +4,9 @@ use bytes::Bytes;
 use itertools::Itertools;
 use std::collections::HashMap;
 
-use crate::auth::{AuthHeader};
-use crate::http::{DataContentType, HttpClient};
+use crate::auth::AuthHeader;
 use crate::error::SeascapeError::InvalidContent;
+use crate::http::{DataContentType, HttpClient};
 
 use super::{Jellyfin, ClientResult};
 
