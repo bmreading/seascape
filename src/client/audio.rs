@@ -3,6 +3,7 @@ use derive_builder::Builder;
 use bytes::Bytes;
 use itertools::Itertools;
 use std::collections::HashMap;
+use std::fmt::Display;
 
 use crate::auth::AuthHeader;
 use crate::error::SeascapeError::InvalidContent;
@@ -183,7 +184,7 @@ pub enum AudioQueryContext {
     Static,
 }
 
-impl core::fmt::Display for AudioQueryContext {
+impl Display for AudioQueryContext {
     fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
         write!(f, "{:?}", self)
     }
@@ -197,7 +198,7 @@ pub enum AudioQuerySubtitleMethod {
     Hls,
 }
 
-impl core::fmt::Display for AudioQuerySubtitleMethod {
+impl Display for AudioQuerySubtitleMethod {
     fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
         write!(f, "{:?}", self)
     }
