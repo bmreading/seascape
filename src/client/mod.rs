@@ -4,6 +4,7 @@ pub mod activity_log;
 pub mod api_key;
 pub mod artist;
 pub mod audio;
+pub mod branding;
 pub mod builder;
 
 pub use self::builder::Builder;
