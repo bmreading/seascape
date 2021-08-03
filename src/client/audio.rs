@@ -1,6 +1,6 @@
 //! Audio stream operations
-use derive_builder::Builder;
 use bytes::Bytes;
+use derive_builder::Builder;
 use itertools::Itertools;
 use std::collections::HashMap;
 use std::fmt::Display;
@@ -9,12 +9,15 @@ use crate::auth::AuthHeader;
 use crate::error::SeascapeError::InvalidContent;
 use crate::http::{DataContentType, HttpClient};
 
-use super::{Jellyfin, ClientResult};
+use super::{ClientResult, Jellyfin};
 
 impl Jellyfin {
     /// Gets an audio stream. This stream only supports direct play (no transcoding).
     pub async fn audio_stream(&self, stream_query: &AudioStreamQuery) -> ClientResult<Bytes> {
-        let url = format!("{}/{}/{}/{}", self.base_url, "audio", stream_query.item_id, "stream");
+        let url = format!(
+            "{}/{}/{}/{}",
+            self.base_url, "audio", stream_query.item_id, "stream"
+        );
 
         let is_static = stream_query.is_static.map(|x| x.to_string());
         let stream_params = stream_query.params.as_ref().map(|x| x.join(","));
@@ -115,7 +118,6 @@ impl Jellyfin {
             )
             .body(None)?;
 
-        
         let response = self.http_client_type.send(&request, Some(&params)).await?;
 
         match response.body() {
