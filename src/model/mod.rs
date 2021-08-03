@@ -18,6 +18,8 @@ pub mod base_item_person_image_blur_hashes;
 pub use self::base_item_person_image_blur_hashes::BaseItemPersonImageBlurHashes;
 pub mod branding_configuration;
 pub use self::branding_configuration::BrandingConfiguration;
+pub mod channel_features;
+pub use self::channel_features::ChannelFeatures;
 pub mod channel_type;
 pub use self::channel_type::ChannelType;
 pub mod chapter_info;
