@@ -134,17 +134,17 @@ impl Builder {
         if (self.api_key.is_some() && self.username.is_some())
             || (self.api_key.is_some() && self.password.is_some())
         {
-            return Err(SeascapeError::InvalidClient(
+            Err(SeascapeError::InvalidClient(
                 "cannot use api key auth and user auth simultaneously".to_string(),
-            ));
+            ))
 
         // Can't have a password without a username or vice-versa
         } else if (self.username.is_some() && self.password.is_none())
             || (self.password.is_some() && self.username.is_none())
         {
-            return Err(SeascapeError::InvalidClient(
+            Err(SeascapeError::InvalidClient(
                 "username and password must be used together".to_string(),
-            ));
+            ))
 
         // Can't have username nor password without user auth params
         } else if (self.username.is_some() && self.password.is_some()) && (self.client.is_none())
@@ -152,9 +152,9 @@ impl Builder {
             || (self.username.is_some() && self.password.is_some()) && (self.device_id.is_none())
             || (self.username.is_some() && self.password.is_some()) && (self.version.is_none())
         {
-            return Err(SeascapeError::InvalidClient(
+            Err(SeascapeError::InvalidClient(
                 "user auth requires credentials and user auth params".to_string(),
-            ));
+            ))
 
         // Can't have both api key and any user auth params
         } else if (self.api_key.is_some() && self.client.is_some())
@@ -163,18 +163,18 @@ impl Builder {
             || (self.api_key.is_some() && self.version.is_some())
             || (self.api_key.is_some() && self.token.is_some())
         {
-            return Err(SeascapeError::InvalidClient(
+            Err(SeascapeError::InvalidClient(
                 "client, device, device_id, version, and token are only valid with user auth"
                     .to_string(),
-            ));
+            ))
 
         // Can't have token and user/pass creds
         } else if (self.token.is_some() && self.username.is_some())
             || (self.token.is_some() && self.password.is_some())
         {
-            return Err(SeascapeError::InvalidClient(
+            Err(SeascapeError::InvalidClient(
                 "token cannot be used with username and password credentials".to_string(),
-            ));
+            ))
 
         // Can't use auth_header with any of these
         } else if (self.auth_header_type.is_some() && self.username.is_some())
@@ -186,10 +186,10 @@ impl Builder {
             || (self.auth_header_type.is_some() && self.token.is_some())
             || (self.auth_header_type.is_some() && self.api_key.is_some())
         {
-            return Err(SeascapeError::InvalidClient(
+            Err(SeascapeError::InvalidClient(
                 "auth_header cannot be used with username, password, client, device, device_id, version, nor token"
                     .to_string(),
-            ));
+            ))
 
         // Try a user authentication
         } else if self.username.is_some()
