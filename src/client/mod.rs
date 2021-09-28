@@ -6,6 +6,7 @@ pub mod artist;
 pub mod audio;
 pub mod branding;
 pub mod builder;
+pub mod channels;
 
 pub use self::builder::Builder;
 
