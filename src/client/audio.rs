@@ -123,6 +123,7 @@ impl Jellyfin {
         match response.body() {
             DataContentType::BinaryContent(c) => Ok(c.to_owned()),
             DataContentType::TextContent(_) => Err(InvalidContent),
+            DataContentType::NoContent => Err(InvalidContent),
         }
     }
 }
