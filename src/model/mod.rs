@@ -26,6 +26,8 @@ pub mod chapter_info;
 pub use self::chapter_info::ChapterInfo;
 pub mod client_capabilities;
 pub use self::client_capabilities::ClientCapabilities;
+pub mod collection_creation_result;
+pub use self::collection_creation_result::CollectionCreationResult;
 pub mod base_item_dto;
 pub use self::base_item_dto::BaseItemDto;
 pub mod codec_profile;
