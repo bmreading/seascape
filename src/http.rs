@@ -144,7 +144,8 @@ impl<T> IntoResponseExt<T> for reqwest::Response {
                         .any(|v| header.1.to_str().unwrap().contains(v)))
             {
                 is_text_data = true;
-            } else if header.0.as_str() == "content-type" && !header.1.to_str().unwrap().contains("text")
+            } else if header.0.as_str() == "content-type"
+                && !header.1.to_str().unwrap().contains("text")
             {
                 is_binary_data = true;
             }
@@ -154,13 +155,14 @@ impl<T> IntoResponseExt<T> for reqwest::Response {
             http_response_builder
                 .body(DataContentType::TextContent(self.text().await.unwrap()))
                 .unwrap()
-        } else if is_binary_data{
+        } else if is_binary_data {
             http_response_builder
                 .body(DataContentType::BinaryContent(self.bytes().await.unwrap()))
                 .unwrap()
         } else {
             http_response_builder
-                .body(DataContentType::NoContent).unwrap()
+                .body(DataContentType::NoContent)
+                .unwrap()
         }
     }
 }

@@ -7,11 +7,14 @@ use crate::error::SeascapeError::InvalidContent;
 use crate::http::{DataContentType, HttpClient};
 use crate::model::CollectionCreationResult;
 
-use super::{Jellyfin, ClientResult};
+use super::{ClientResult, Jellyfin};
 
 impl Jellyfin {
     /// Create a new collection
-    pub async fn create(&self, params: &CollectionParams) -> ClientResult<CollectionCreationResult> {
+    pub async fn create(
+        &self,
+        params: &CollectionParams,
+    ) -> ClientResult<CollectionCreationResult> {
         let url = format!("{}/{}", self.base_url, "collections");
 
         let ids = params.ids.as_ref().map(|x| x.join(","));
@@ -29,7 +32,7 @@ impl Jellyfin {
             .method("POST")
             .header(
                 self.auth_header_type.as_ref().unwrap().header_key_name(),
-                self.auth_header_type.as_ref().unwrap().header_value()
+                self.auth_header_type.as_ref().unwrap().header_value(),
             )
             .body(None)?;
 
@@ -44,7 +47,10 @@ impl Jellyfin {
 
     /// Add items to a collection
     pub async fn add_items(&self, collection_id: &str, ids_to_add: &Vec<&str>) -> ClientResult<()> {
-        let url = format!("{}/{}/{}/{}", self.base_url, "collections", collection_id, "items");
+        let url = format!(
+            "{}/{}/{}/{}",
+            self.base_url, "collections", collection_id, "items"
+        );
 
         let joined_ids_to_add = ids_to_add.join(",");
 

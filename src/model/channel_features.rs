@@ -29,16 +29,25 @@ pub struct ChannelFeatures {
     #[serde(rename = "DefaultSortFields", skip_serializing_if = "Option::is_none")]
     pub default_sort_fields: Option<Vec<ChannelItemSortField>>,
     /// Indicates if a sort ascending/descending toggle is supported or not.
-    #[serde(rename = "SupportsSortOrderToggle", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "SupportsSortOrderToggle",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub supports_sort_order_toggle: Option<bool>,
     /// A value indicating whether latest media is supported or not.
-    #[serde(rename = "SupportsLatestMedia", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "SupportsLatestMedia",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub supports_latest_media: Option<bool>,
     /// A value indicating whether this instance can filter.
     #[serde(rename = "CanFilter", skip_serializing_if = "Option::is_none")]
     pub can_filter: Option<bool>,
     /// A value indicating whether content downloading is supported or not.
-    #[serde(rename = "SupportsContentDownloading", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "SupportsContentDownloading",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub supports_content_downloading: Option<bool>,
 }
 

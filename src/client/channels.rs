@@ -4,11 +4,11 @@ use http::request::Request;
 use serde_json::from_str;
 
 use crate::auth::AuthHeader;
-use crate::http::{DataContentType, HttpClient};
 use crate::error::SeascapeError::InvalidContent;
+use crate::http::{DataContentType, HttpClient};
 use crate::model::{BaseItemDto, ChannelFeatures};
 
-use super::{Jellyfin, ClientResult};
+use super::{ClientResult, Jellyfin};
 
 impl Jellyfin {
     /// Get available channels
@@ -35,10 +35,10 @@ impl Jellyfin {
             .method("GET")
             .header(
                 self.auth_header_type.as_ref().unwrap().header_key_name(),
-                self.auth_header_type.as_ref().unwrap().header_value()
+                self.auth_header_type.as_ref().unwrap().header_value(),
             )
             .body(None)?;
-        
+
         let response = self.http_client_type.send(&request, Some(&params)).await?;
 
         match response.body() {
@@ -49,17 +49,20 @@ impl Jellyfin {
     }
 
     pub async fn channel_features(&self, channel_id: &str) -> ClientResult<ChannelFeatures> {
-        let url = format!("{}/{}/{}/{}", self.base_url, "channels", channel_id, "features");
-        
+        let url = format!(
+            "{}/{}/{}/{}",
+            self.base_url, "channels", channel_id, "features"
+        );
+
         let request = Request::builder()
             .uri(url)
             .method("GET")
             .header(
                 self.auth_header_type.as_ref().unwrap().header_key_name(),
-                self.auth_header_type.as_ref().unwrap().header_value()
+                self.auth_header_type.as_ref().unwrap().header_value(),
             )
             .body(None)?;
-        
+
         let response = self.http_client_type.send(&request, None).await?;
 
         match response.body() {
