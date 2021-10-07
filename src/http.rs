@@ -132,6 +132,7 @@ impl<T> IntoResponseExt<T> for reqwest::Response {
         const TEXT_DATA_CONTENT_TYPES: [&str; 2] = ["application/json", "application/xhtml"];
 
         let mut is_text_data = false;
+        let mut is_binary_data = false;
         for header in self.headers() {
             http_response_builder = http_response_builder.header(header.0, header.1);
 
@@ -143,6 +144,9 @@ impl<T> IntoResponseExt<T> for reqwest::Response {
                         .any(|v| header.1.to_str().unwrap().contains(v)))
             {
                 is_text_data = true;
+            } else if header.0.as_str() == "content-type" && !header.1.to_str().unwrap().contains("text")
+            {
+                is_binary_data = true;
             }
         }
 
@@ -150,10 +154,13 @@ impl<T> IntoResponseExt<T> for reqwest::Response {
             http_response_builder
                 .body(DataContentType::TextContent(self.text().await.unwrap()))
                 .unwrap()
-        } else {
+        } else if is_binary_data{
             http_response_builder
                 .body(DataContentType::BinaryContent(self.bytes().await.unwrap()))
                 .unwrap()
+        } else {
+            http_response_builder
+                .body(DataContentType::NoContent).unwrap()
         }
     }
 }
@@ -162,4 +169,5 @@ impl<T> IntoResponseExt<T> for reqwest::Response {
 pub enum DataContentType {
     TextContent(String),
     BinaryContent(Bytes),
+    NoContent,
 }
