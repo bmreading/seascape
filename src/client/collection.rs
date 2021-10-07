@@ -46,7 +46,7 @@ impl Jellyfin {
     }
 
     /// Add items to a collection
-    pub async fn add_items(&self, collection_id: &str, ids_to_add: &Vec<&str>) -> ClientResult<()> {
+    pub async fn add_items(&self, collection_id: &str, ids_to_add: &[&str]) -> ClientResult<()> {
         let url = format!(
             "{}/{}/{}/{}",
             self.base_url, "collections", collection_id, "items"
