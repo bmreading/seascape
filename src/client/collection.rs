@@ -76,6 +76,38 @@ impl Jellyfin {
             DataContentType::BinaryContent(_) => Err(InvalidContent),
         }
     }
+
+    /// Remove items from a collection
+    pub async fn remove_items(&self, collection_id: &str, ids_to_remove: &[&str]) -> ClientResult<()> {
+        let url = format!(
+            "{}/{}/{}/{}",
+            self.base_url, "collections", collection_id, "items"
+        );
+
+        let joined_ids_to_remove = ids_to_remove.join(",");
+
+        let params = crate::build_map!(
+            "ids": joined_ids_to_remove.as_ref(),
+        );
+
+        let request = http::request::Request::builder()
+            .uri(url)
+            .method("DELETE")
+            .header(
+                self.auth_header_type.as_ref().unwrap().header_key_name(),
+                self.auth_header_type.as_ref().unwrap().header_value(),
+            )
+            .header("content-length", 0)
+            .body(None)?;
+
+        let response = self.http_client_type.send(&request, Some(&params)).await?;
+
+        match response.body() {
+            DataContentType::NoContent => Ok(()),
+            DataContentType::TextContent(_) => Err(InvalidContent),
+            DataContentType::BinaryContent(_) => Err(InvalidContent),
+        }
+    }
 }
 
 #[derive(Builder, Clone, Debug, Default)]
