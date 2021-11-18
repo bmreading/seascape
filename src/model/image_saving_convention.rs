@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 /// A convention to save
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
@@ -7,7 +7,6 @@ pub enum ImageSavingConvention {
     Legacy,
     #[serde(rename = "Compatible")]
     Compatible,
-
 }
 
 impl ToString for ImageSavingConvention {
@@ -18,7 +17,3 @@ impl ToString for ImageSavingConvention {
         }
     }
 }
-
-
-
-

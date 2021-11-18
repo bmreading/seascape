@@ -16,5 +16,3 @@ pub struct Version {
     #[serde(rename = "MinorRevision", skip_serializing_if = "Option::is_none")]
     pub minor_revision: Option<i32>,
 }
-
-

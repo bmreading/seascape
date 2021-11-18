@@ -78,7 +78,11 @@ impl Jellyfin {
     }
 
     /// Remove items from a collection
-    pub async fn remove_items(&self, collection_id: &str, ids_to_remove: &[&str]) -> ClientResult<()> {
+    pub async fn remove_items(
+        &self,
+        collection_id: &str,
+        ids_to_remove: &[&str],
+    ) -> ClientResult<()> {
         let url = format!(
             "{}/{}/{}/{}",
             self.base_url, "collections", collection_id, "items"

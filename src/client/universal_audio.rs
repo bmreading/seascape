@@ -3,31 +3,61 @@
 use bytes::Bytes;
 use derive_builder::Builder;
 
-use crate::{auth::AuthHeader, error::SeascapeError::InvalidContent};
 use crate::http::{DataContentType, HttpClient};
+use crate::{auth::AuthHeader, error::SeascapeError::InvalidContent};
 
 use super::{ClientResult, Jellyfin};
 
 impl Jellyfin {
     /// Gets an audio stream.
-    pub async fn universal_audio_stream(&self, stream_query: &UniversalAudioStreamQuery) -> ClientResult<Bytes> {
+    pub async fn universal_audio_stream(
+        &self,
+        stream_query: &UniversalAudioStreamQuery,
+    ) -> ClientResult<Bytes> {
         let url = format!(
             "{}/{}/{}/{}",
             self.base_url, "universal", stream_query.item_id, "stream"
         );
 
         let container = stream_query.container.as_ref().map(|x| x.join(","));
-        let max_audio_channels = stream_query.max_audio_channels.as_ref().map(|x| x.to_string());
-        let transcoding_audio_channels = stream_query.transcoding_audio_channels.as_ref().map(|x| x.to_string());
-        let max_streaming_bitrate = stream_query.max_streaming_bitrate.as_ref().map(|x| x.to_string());
+        let max_audio_channels = stream_query
+            .max_audio_channels
+            .as_ref()
+            .map(|x| x.to_string());
+        let transcoding_audio_channels = stream_query
+            .transcoding_audio_channels
+            .as_ref()
+            .map(|x| x.to_string());
+        let max_streaming_bitrate = stream_query
+            .max_streaming_bitrate
+            .as_ref()
+            .map(|x| x.to_string());
         let audio_bitrate = stream_query.audio_bitrate.as_ref().map(|x| x.to_string());
-        let start_time_ticks = stream_query.start_time_ticks.as_ref().map(|x| x.to_string());
-        let max_audio_sample_rate = stream_query.max_audio_sample_rate.as_ref().map(|x| x.to_string());
-        let max_audio_bit_depth = stream_query.max_audio_bit_depth.as_ref().map(|x| x.to_string());
-        let enable_remote_media = stream_query.enable_remote_media.as_ref().map(|x| x.to_string());
-        let break_on_non_key_frames = stream_query.break_on_non_key_frames.as_ref().map(|x| x.to_string());
-        let enable_redirection = stream_query.enable_redirection.as_ref().map(|x| x.to_string());
-    
+        let start_time_ticks = stream_query
+            .start_time_ticks
+            .as_ref()
+            .map(|x| x.to_string());
+        let max_audio_sample_rate = stream_query
+            .max_audio_sample_rate
+            .as_ref()
+            .map(|x| x.to_string());
+        let max_audio_bit_depth = stream_query
+            .max_audio_bit_depth
+            .as_ref()
+            .map(|x| x.to_string());
+        let enable_remote_media = stream_query
+            .enable_remote_media
+            .as_ref()
+            .map(|x| x.to_string());
+        let break_on_non_key_frames = stream_query
+            .break_on_non_key_frames
+            .as_ref()
+            .map(|x| x.to_string());
+        let enable_redirection = stream_query
+            .enable_redirection
+            .as_ref()
+            .map(|x| x.to_string());
+
         let params = build_map!(
             optional "container": container.as_ref(),
             optional "mediaSourceId": stream_query.media_source_id.as_deref(),
@@ -47,7 +77,7 @@ impl Jellyfin {
             optional "breakOnNonKeyFrames": break_on_non_key_frames.as_deref(),
             optional "enableRedirection": enable_redirection.as_deref(),
         );
-        
+
         let request = http::request::Request::builder()
             .uri(url)
             .method("GET")
@@ -56,9 +86,9 @@ impl Jellyfin {
                 self.auth_header_type.as_ref().unwrap().header_value(),
             )
             .body(None)?;
-        
+
         let response = self.http_client_type.send(&request, Some(&params)).await?;
-        
+
         match response.body() {
             DataContentType::BinaryContent(c) => Ok(c.to_owned()),
             DataContentType::TextContent(_) => Err(InvalidContent),

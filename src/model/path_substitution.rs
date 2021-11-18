@@ -9,4 +9,3 @@ pub struct PathSubstitution {
     #[serde(rename = "To", skip_serializing_if = "Option::is_none")]
     pub to: Option<String>,
 }
-

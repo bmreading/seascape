@@ -12,5 +12,3 @@ pub struct RepositoryInfo {
     #[serde(rename = "Enabled", skip_serializing_if = "Option::is_none")]
     pub enabled: Option<bool>,
 }
-
-
