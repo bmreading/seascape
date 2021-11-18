@@ -24,6 +24,9 @@ pub enum HttpClientError {
     #[error("http error: {0}")]
     Http(#[from] http::Error),
 
+    #[error("jellyfin returned bad request error. check parameters.")]
+    BadRequest,
+
     #[error("jellyfin returned unauthorized error. check creds or token.")]
     Unauthorized,
 
@@ -39,7 +42,9 @@ pub enum HttpClientError {
 
 impl HttpClientError {
     fn from_status(code: u16) -> Self {
-        if code == 401 {
+        if code == 400 {
+            Self::BadRequest
+        } else if code == 401 {
             Self::Unauthorized
         } else if code == 403 {
             Self::Forbidden
