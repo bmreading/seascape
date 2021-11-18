@@ -8,6 +8,7 @@ pub mod branding;
 pub mod builder;
 pub mod channels;
 pub mod collection;
+pub mod universal_audio;
 
 pub use self::builder::Builder;
 
