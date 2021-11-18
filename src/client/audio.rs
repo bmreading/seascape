@@ -1,4 +1,4 @@
-//! Audio stream operations
+//! Audio stream operations. Use UniversalAudio module for more robust options.
 use bytes::Bytes;
 use derive_builder::Builder;
 use itertools::Itertools;
