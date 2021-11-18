@@ -16,7 +16,7 @@ impl Jellyfin {
     ) -> ClientResult<Bytes> {
         let url = format!(
             "{}/{}/{}/{}",
-            self.base_url, "universal", stream_query.item_id, "stream"
+            self.base_url, "audio", stream_query.item_id, "universal"
         );
 
         let container = stream_query.container.as_ref().map(|x| x.join(","));
