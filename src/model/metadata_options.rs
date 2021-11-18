@@ -34,18 +34,3 @@ pub struct MetadataOptions {
     #[serde(rename = "ImageFetcherOrder", skip_serializing_if = "Option::is_none")]
     pub image_fetcher_order: Option<Vec<String>>,
 }
-
-impl MetadataOptions {
-    /// Class MetadataOptions.
-    pub fn new() -> MetadataOptions {
-        MetadataOptions {
-            item_type: None,
-            disabled_metadata_savers: None,
-            local_metadata_reader_order: None,
-            disabled_metadata_fetchers: None,
-            metadata_fetcher_order: None,
-            disabled_image_fetchers: None,
-            image_fetcher_order: None,
-        }
-    }
-}

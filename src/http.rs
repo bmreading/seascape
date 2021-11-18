@@ -74,7 +74,7 @@ impl HttpClient for HttpClientType {
         query_params: Option<&QueryParamMap>,
     ) -> Result<Response, Error> {
         match self {
-            HttpClientType::AsyncClient(c) => Ok(c.send(&req, query_params).await?),
+            HttpClientType::AsyncClient(c) => Ok(c.send(req, query_params).await?),
         }
     }
 }

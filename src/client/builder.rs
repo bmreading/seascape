@@ -203,9 +203,9 @@ impl Builder {
         {
             let user_auth_info = UserAuthInfo::new(
                 self.client.as_ref().unwrap(),
-                &self.device.as_ref().unwrap(),
-                &self.device_id.as_ref().unwrap(),
-                &self.version.as_ref().unwrap(),
+                self.device.as_ref().unwrap(),
+                self.device_id.as_ref().unwrap(),
+                self.version.as_ref().unwrap(),
                 None,
             );
             let user_header = UserAuthHeader::new(user_auth_info);
@@ -220,8 +220,8 @@ impl Builder {
 
             Ok(jellyfin
                 .authenticate_by_user(
-                    &self.username.as_ref().unwrap(),
-                    &self.password.as_ref().unwrap(),
+                    self.username.as_ref().unwrap(),
+                    self.password.as_ref().unwrap(),
                 )
                 .await?)
         // Return with api key authentication
@@ -234,7 +234,7 @@ impl Builder {
             && self.version.is_none()
             && self.token.is_none()
         {
-            let api_key_header = ApiKeyAuthHeader::new(&self.api_key.as_ref().unwrap());
+            let api_key_header = ApiKeyAuthHeader::new(self.api_key.as_ref().unwrap());
             let auth_header_type = AuthHeaderType::ApiKeyAuthHeaderType(api_key_header);
 
             Ok(Jellyfin {
